@@ -1,6 +1,5 @@
 const express = require("express");
 const { connection } = require("./config/db");
-const { authentication } = require("./middlewares/auth.middleware");
 const { validator } = require("./middlewares/validator.middleware");
 const { userRoutes } = require("./Routes/User.routes");
 require("dotenv").config();
@@ -20,7 +19,7 @@ app.use(cors({
 app.use(express.json());
 
 app.get("/", (req,res) => {
-    res.send("welcome to Homepage")
+    res.send({"Message":"welcome to Homepage"})
 })
 require("./auth")
 function isLoggedIn(req,res,next){
@@ -57,9 +56,6 @@ app.use("/", userRoutes);
 
 app.use(authentication);
 
-
-
-
 app.listen(process.env.port, async() => {
     try{
         await connection;
@@ -68,6 +64,13 @@ app.listen(process.env.port, async() => {
     catch(err){
         console.log("Error connecting to DB")
         console.log(err)
+        console.log("Connection to DB Success");
+    } 
+    
+    catch (err) {
+        console.log("Connection to DB Failed");
+        console.log(err);
+        res.send({"Message":"Connection to Network Failed"});
     }
     console.log(`Listening on PORT ${process.env.port}`)
 });

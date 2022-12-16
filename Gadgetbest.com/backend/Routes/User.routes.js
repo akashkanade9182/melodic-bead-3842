@@ -15,14 +15,17 @@ userRoutes.post("/signup", async(req,res) => {
 
 
     if(userEmail && userNumber){
-        res.send("Both Email and Mobile Number are registered already")
+       
+        res.send({"Message":"Both Email and Mobile Number are registered already"})
     }
    else if(userEmail){
-        res.send(" This Email is already registered")
+        res.send({"Message":"This Email is already registered"})
+        
     }
 
     else if(userNumber){
-        res.send("this Mobile Number is already registered")
+        
+        res.send({"Message":"this Mobile Number is already registered"})
     }
     
     else{
@@ -32,14 +35,14 @@ userRoutes.post("/signup", async(req,res) => {
                 const user = new UserModel({name,email,password:myPassword,number,usertype})
                 await user.save();
                 console.log("signup Successful")
-                res.send("Signup Successfully")
+                res.send({"Message":"Signup Successfully"})
             })
         } 
         
         catch (err) {
             console.log("Error in Signing-Up");
             console.log(err);
-            res.send("Signup failed, try again")
+            res.send({"Message":"Signup failed, try again"})
         }
     }
 })
@@ -62,20 +65,21 @@ userRoutes.post("/login", async(req,res) => {
                     res.send({token, message:"Logged-In Successfully"});
                 }
                 else{
-                    res.send("The Password you Entered is Wrong")
+                    res.send({"Message":"The Password you Entered is Wrong"})
+                    
                 }
             })
         }
 
         else{
-            res.send("User not found");
+            res.send({"Message":"User not found"});
         }
     } 
     
     catch (err) {
         console.log("Error while making POST req")
         console.log(err)
-        res.send("Login failed, Please try again later");
+        res.send({"Message":"Login failed, Please try again later"});
     }
 })
 
