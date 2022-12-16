@@ -18,6 +18,18 @@ const validator = (req,res,next) => {
         }
     }
 
+    else if(req.url === "/products/add"){
+        console.log(req.body)
+        if(req.body.title && req.body.image_url && req.body.price && req.body.brand  && 
+           req.body.category && req.body.subCategory){
+                next()
+        }
+
+        else{
+            return(res.send({"Message":"Wrong or Empty Credential"}));
+        }
+    }
+
     else{
         next()
     }
