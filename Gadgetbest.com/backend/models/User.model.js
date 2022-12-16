@@ -1,12 +1,21 @@
 const mongoose = require("mongoose")
 const userSchema = mongoose.Schema({
-    email:  String,
+    name: String,
+    email: String,
     password: String,
-    confirm:  String ,
-    captcha: String,
+    number: Number,
 })
 
 const UserModel = mongoose.model("user", userSchema)
 module.exports = {
     UserModel
 }
+
+/* {
+    "name": "ramu",
+    "email": "ramu@g.com",
+    "password": "ramu",
+    "number": 4565,
+    "usertype": "admin"
+ }
+ */
