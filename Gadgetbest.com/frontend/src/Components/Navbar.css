@@ -11,3 +11,19 @@
     width: 100%;
     height: 100%;
   }
+
+
+
+@media only screen and (max-width: 800px){
+  .logobox{
+    border:1px solid black;
+    width: 10rem;
+    }
+    .logobox>img{
+      width: 100%;
+      height: 100%;
+    }
+}
+@media only screen and (max-width: 425px){
+	/*Small smartphones [325px -> 425px]*/
+}

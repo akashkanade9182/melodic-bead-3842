@@ -1,0 +1,48 @@
+.poster{
+    height: 70px;
+    width:170px;
+    margin-left:0
+}
+.SuggestionBox{
+
+background-color:white;
+position:absolute;
+top:6rem;
+width:400px;
+display:flex;
+flex-direction:column;
+max-height:400px;
+overflow:auto;
+
+}
+.SuggestionBox > *{
+ 
+    flex:1;
+    text-align:right;
+    padding:10px;
+   
+}
+/* .SuggestionBox:nth-child(${({active})=>active}){
+    background-color:rgba(0,0,0,0.09);
+    cursor:pointer;
+} */
+.SuggestionBox::-webkit-scrollbar {
+    display: none;
+  }
+  .element:hover{
+ background-color: #cfd8dc;
+  }
+
+
+
+
+
+  @media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+}
+@media only screen and (max-width: 600px){
+	/*Big smartphones [426px -> 600px]*/
+}
+@media only screen and (max-width: 425px){
+	/*Small smartphones [325px -> 425px]*/
+}
