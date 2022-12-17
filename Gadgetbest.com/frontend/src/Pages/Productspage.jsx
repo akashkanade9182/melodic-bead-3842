@@ -3,6 +3,7 @@ import {
   Alert,
   AlertIcon,
   Box,
+  Center,
   Flex,
   GridItem,
   Image,
@@ -10,21 +11,25 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
+import { Button } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { BiHomeSmile } from "react-icons/bi";
+import { Link } from "react-router-dom";
+// import Pagination from "../Components/Pagination";
 import "../Styles/productpage.css";
 
 const Productspage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  // const [page,setPage]= useState('1')
 
   const getData = () => {
     setLoading(true);
     // fetch("https://netmeddata.onrender.com/products")
-    fetch("https://odd-dog-pea-coat.cyclic.app/products")
+    fetch(`https://odd-dog-pea-coat.cyclic.app/products`)
       .then((res) => res.json())
       .then((res) => {
         console.log(res)
@@ -49,14 +54,30 @@ const Productspage = () => {
     
   };
 
+
+
+
+
   if (loading) {
-    return <h1>.....Loading</h1>;
+    return (
+      <Box>
+        <Center>
+        <Image h='100vh' w='100wh' src="https://c4.wallpaperflare.com/wallpaper/284/923/646/minimalism-black-loading-typography-wallpaper-preview.jpg" alt='loading image'/>
+        </Center>
+      </Box>
+    );
   }
-
   if (error) {
-    return <h1>....Something went wrong</h1>;
+    return (
+      <Box>
+        <Center>
+        <Image h='100vh' w='100wh' src="https://wallpapercave.com/dwp1x/wp4371955.png" alt='loading image'/>
+        </Center>
+      </Box>
+    );
   }
 
+  else{
   return (
     <Box w="98%" m="auto" >
       <Flex justifyContent="space-between" lineHeight="30px">
@@ -327,24 +348,24 @@ const Productspage = () => {
                   justifyContent="space-evenly"
                   flexWrap="wrap"
                 >
-                  <Box className="section-price-filter" h="2rem">
+                  <Box className="section-price-filter" pl='1' pr='1'  h="2rem">
                     <Text>Rs 999</Text>
                   </Box>
-                  <Box className="section-price-filter" h="2rem">
+                  <Box className="section-price-filter" pl='1' pr='1'  h="2rem">
                     <Text>Rs 1999</Text>
                   </Box>
-                  <Box className="section-price-filter" h="2rem">
+                  <Box className="section-price-filter" pl='1' pr='1'  h="2rem">
                     <Text>Rs 3999</Text>
                   </Box>
 
-                  <Box className="section-price-filter" h="2rem">
+                  <Box className="section-price-filter"  pl='1' pr='1' h="2rem">
                     <Text>Rs 7999</Text>
                   </Box>
 
-                  <Box className="section-price-filter" h="2rem">
+                  <Box className="section-price-filter"  pl='1' pr='1' h="2rem">
                     <Text>Rs 9999</Text>
                   </Box>
-                   <Box className="section-price-filter" h="2rem">
+                   <Box className="section-price-filter"  pl='1' pr='1' h="2rem">
                     <Text>All</Text>
                   </Box>
 
@@ -430,11 +451,14 @@ const Productspage = () => {
                           <Text mt="1rem" color="red" fontWeight="bold">
                             Rs. {item.price}
                           </Text>
-                          <Box fontSize="xl" color="red" textAlign="right">
+                          <Box fontSize="xl"  textAlign="right"  mt={3}>
+                           <Flex justifyContent='space-between' >
+                           <Link to={`/Watches/${item._id}`}><Button>More Detail</Button></Link>
                             <i
                               onClick={handleAddToCart}
                               class="bx bx-heart"
                             ></i>
+                           </Flex>
                           </Box>
                         </Box>
                       </GridItem>
@@ -446,7 +470,8 @@ const Productspage = () => {
         </Box>
       </Flex>
     </Box>
-  );
+  )
+                }
 };
 
 export default Productspage;
