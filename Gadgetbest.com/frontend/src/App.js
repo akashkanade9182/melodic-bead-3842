@@ -12,10 +12,10 @@ import { AllRoutes } from './Pages/AllRoutes';
 function App() {
   return (
     <div className="App">
-      {/* <Navbar/> */}
-      {/* <Productspage/> */}
+      <Navbar/>
+      <Productspage/>
 
-      <SingleProduct/>
+      {/* <SingleProduct/> */}
     
 
      <AllRoutes />
