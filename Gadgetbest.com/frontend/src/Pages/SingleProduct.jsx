@@ -3,16 +3,12 @@ import {
   Center,
   Flex,
   Image,
-  Img,
+  SimpleGrid,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
   Text,
-  Tfoot,
-  Th,
-  Thead,
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
@@ -24,10 +20,10 @@ const SingleProduct = () => {
   return (
     <Box>
       {/* Top head line */}
-      <Box p={3} fontSize={["xs", "sm", "sm"]} h="auto" bgColor="gray.50">
-        <Flex w="80%" margin="auto" justifyContent="space-between">
+      <Box p={3} fontSize={["xs", "xs", "xs"]} h="auto" bgColor="gray.50">
+        <Flex w="80%" margin="auto" justifyContent="space-between" flexWrap='wrap'>
           <Box>
-            <Text color="gray">
+            <Text color="gray" textAlign='left'>
               Home > Consumer Electronics > Smart Electronics > Smart Watches
             </Text>
           </Box>
@@ -56,10 +52,10 @@ const SingleProduct = () => {
 
       {/* Image and Description */}
       <Box m="auto" w="80%">
-        <Flex>
+        <SimpleGrid columns={[1,1,2]}>
           {/* Image  */}
-          <Box w="40%">
-            <Flex justifyContent="center" mt={7}>
+          <Box w={['100%','100%',"100%","100%"]}>
+            <Flex flexWrap='wrap' justifyContent="center" mt={7}>
               <Image
                 onMouseMove={imgZoom}
                 h="100%"
@@ -70,7 +66,7 @@ const SingleProduct = () => {
           </Box>
 
           {/* Description */}
-          <Box w="60%">
+          <Box w={['100%']}>
             {/* Watch Title */}
             <Box w="90%" m="auto">
               <Box w="90%" mt={6}>
@@ -94,12 +90,13 @@ const SingleProduct = () => {
               </Box>
 
               <Box mt="5">
-                <Flex w="50%" justifyContent="space-between">
-                  <Box p="10px 0px">Color :</Box>
+                <Flex w={['100%']} >
+                  <Box  w='fit-content'>Color :</Box>
                   <Box
                     className="section-price-filter"
                     borderColor="gray.400"
-                    p="8px 30px"
+                    p="5px 20px"
+                    ml={2}
                   >
                     <Center>
                       <Text cursor="pointer">Gold</Text>
@@ -108,7 +105,8 @@ const SingleProduct = () => {
                   <Box
                     className="section-price-filter"
                     borderColor="gray.400"
-                    p="8px 30px"
+                    p="5px 20px"
+                    ml={2}
                   >
                     <Center>
                       <Text>Black</Text>
@@ -116,14 +114,14 @@ const SingleProduct = () => {
                   </Box>
                 </Flex>
               </Box>
-              <Box mt="5">
+              <Box mt="5" fontSize={['sm','sm','lg']}>
                 <Flex>
                   <Box p="10px 0px">Ships From :</Box>
                   <Box
                     ml="2rem"
                     border="2px"
                     borderColor="red.400"
-                    p="8px 30px"
+                    p="5px 20px"
                   >
                     <Center>
                       <Text>China</Text>
@@ -134,19 +132,19 @@ const SingleProduct = () => {
               <br />
               <br />
 
-              <Box>
+              <Box border='1px solid black' borderColor='gray.100'>
                 <Flex alignItems="center">
                   <Box fontSize="2xl" cursor="pointer">
                     <i class="bx bx-heart"></i>
                   </Box>
-                  <Box ml="5px">Add to favourite</Box>
+                  <Box  ml="5px">Add to favourite</Box>
                 </Flex>
               </Box>
 
               <br />
 
-              <Box h="50px" fontSize={["sm", "sm", "sm"]}>
-                <Flex alignItems="center" justifyContent="space-around">
+              <Box h='max-content' fontSize={["sm", "sm", "sm"]}>
+                <SimpleGrid columns={[1,1,3,7]}>
                   <Box>
                     <Image
                       h="100%"
@@ -200,13 +198,13 @@ const SingleProduct = () => {
                       <Box>Report Item</Box>
                     </Flex>
                   </Box>
-                </Flex>
+                </SimpleGrid>
               </Box>
 
               <Box></Box>
             </Box>
           </Box>
-        </Flex>
+        </SimpleGrid>
       </Box>
 
       {/* Description */}
@@ -457,9 +455,9 @@ const SingleProduct = () => {
                   <i class="bx bxs-star"></i>
                 </Flex>
               </Box>
-              <Box  border='1px solid black'>
+              <Box  >
                 <Center>
-                  <Text>Write a Review</Text>
+                  <Text border='1px solid black' cursor='pointer' bgColor='yellow.400' fontWeight='bold' borderRadius='5px' p={3}>Write a Review</Text>
                 </Center>
               </Box>
             </Flex>
@@ -468,6 +466,8 @@ const SingleProduct = () => {
           <br />
           <br />
           <hr />
+          <br />
+          <br />
         </Box>
       </Box>
     </Box>
