@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { BiHomeSmile } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Pagination from "../Components/Pagination";
 // import Pagination from "../Components/Pagination";
 import "../Styles/productpage.css";
 
@@ -24,12 +25,12 @@ const Productspage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  // const [page,setPage]= useState('1')
+  const [page,setPage]= useState(1)
 
   const getData = () => {
     setLoading(true);
     // fetch("https://netmeddata.onrender.com/products")
-    fetch(`https://odd-dog-pea-coat.cyclic.app/products`)
+    fetch(`https://odd-dog-pea-coat.cyclic.app/products?search=watches&page=${page}&limit=10`)
       .then((res) => res.json())
       .then((res) => {
         console.log(res)
@@ -43,7 +44,7 @@ const Productspage = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
 
   const handleAddToCart = () => {
     
@@ -71,7 +72,7 @@ const Productspage = () => {
     return (
       <Box>
         <Center>
-        <Image h='100vh' w='100wh' src="https://wallpapercave.com/dwp1x/wp4371955.png" alt='loading image'/>
+        <Image h='100vh' w='100wh' src="https://img.freepik.com/free-vector/glitch-error-404-page-background_23-2148090410.jpg?w=2000" alt='error image'/>
         </Center>
       </Box>
     );
@@ -80,19 +81,21 @@ const Productspage = () => {
   else{
   return (
     <Box w="98%" m="auto" >
-      <Flex justifyContent="space-between" lineHeight="30px">
+      <Flex  justifyContent="space-between" lineHeight="25px">
         <Box
           p={2}
-          width={['50%','25%' ,'20%','20%']}
+          width={['40%','25%' ,'20%','20%']}
           h="100vh"
           className="watch-left-container"
           overflow="scroll"
           overflowX="hidden"
           fontSize={['xs','sm','lg']}
         >
-          <Flex fontSize="l" alignItems="center">
+          <Flex fontSize="l" alignItems="center" w='fit-content'>
             <AiOutlineLeft />
+            <Link to='/'>
             <Text cursor="pointer">Back</Text>
+            </Link>
           </Flex>
 
           <Text textAlign="left" mt={1} fontSize={['xs','sm','lg']} fontWeight="700">
@@ -113,7 +116,7 @@ const Productspage = () => {
           <Text textAlign="left" fontWeight="700" fontSize={['xs','sm','lg']}>
             Hot Search
           </Text>
-          <Box textAlign="left" fontSize="13px">
+          <Box textAlign="left" fontSize={['xs','xs','sm']}>
             <Text className="section-left-hover-bold">Wrist bracelet</Text>
             <Text className="section-left-hover-bold"> Smartwatch Strap</Text>
             <Text className="section-left-hover-bold">Fashion Bracelet</Text>
@@ -210,9 +213,9 @@ const Productspage = () => {
             borderBottom="2px solid orange"
             w="95%"
           >
-            <Flex alignItems="center">
+            <Flex alignItems="center" flexWrap='wrap'>
               <Box width="fit-content" bgColor="yellow" borderRadius="50px">
-                <Flex>
+                <Flex >
                   <Box
                     p="2px"
                     w="30px"
@@ -348,24 +351,24 @@ const Productspage = () => {
                   justifyContent="space-evenly"
                   flexWrap="wrap"
                 >
-                  <Box className="section-price-filter" pl='1' pr='1'  h="2rem">
+                  <Box className="section-price-filter" pl='1' pr='1'  h='fit-content'>
                     <Text>Rs 999</Text>
                   </Box>
-                  <Box className="section-price-filter" pl='1' pr='1'  h="2rem">
+                  <Box className="section-price-filter" pl='1' pr='1'  h='fit-content'>
                     <Text>Rs 1999</Text>
                   </Box>
-                  <Box className="section-price-filter" pl='1' pr='1'  h="2rem">
+                  <Box className="section-price-filter" pl='1' pr='1'  h='fit-content'>
                     <Text>Rs 3999</Text>
                   </Box>
 
-                  <Box className="section-price-filter"  pl='1' pr='1' h="2rem">
+                  <Box className="section-price-filter"  pl='1' pr='1' h='fit-content'>
                     <Text>Rs 7999</Text>
                   </Box>
 
-                  <Box className="section-price-filter"  pl='1' pr='1' h="2rem">
+                  <Box className="section-price-filter"  pl='1' pr='1' h='fit-content'>
                     <Text>Rs 9999</Text>
                   </Box>
-                   <Box className="section-price-filter"  pl='1' pr='1' h="2rem">
+                   <Box className="section-price-filter"  pl='1' pr='1' h='fit-content'>
                     <Text>All</Text>
                   </Box>
 
@@ -436,15 +439,17 @@ const Productspage = () => {
             <Box>
               <SimpleGrid  columns={[1,2,3,4]} gap={4}>
                 {data.length > 0 &&
-                  data?.filter((items)=>items.category==='Watches').map((item) => {
+                  data?.map((item) => {
                     return (
                       <GridItem className="watch-container">
                         <Box lineHeight="20px" textAlign="left" p={2}>
-                          <Image
+                         
+                         <Link to={`/Watches/${item._id}`}>
+                         <Image
                             src={item.image_url}
                             alt={item.brand}
                             cursor="pointer"
-                          />
+                          /></Link> 
                           <Text fontSize={['xs','sm','sm','sm']} className="watch-container-title">
                             {item.title}
                           </Text>
@@ -465,6 +470,8 @@ const Productspage = () => {
                     );
                   })}
               </SimpleGrid>
+              <Pagination page={page} setPage={setPage}/>
+              <hr />
             </Box>
           </Box>
         </Box>

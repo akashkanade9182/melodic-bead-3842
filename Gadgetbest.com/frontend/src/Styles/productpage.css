@@ -42,7 +42,7 @@
 
   /* width */
   .watch-left-container::-webkit-scrollbar {
-    width: 6px;
+    width: 3px;
   }
   
   /* Track */
