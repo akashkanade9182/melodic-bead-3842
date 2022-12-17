@@ -23,10 +23,11 @@ const Productspage = () => {
 
   const getData = () => {
     setLoading(true);
-    fetch("https://netmeddata.onrender.com/products")
+    // fetch("https://netmeddata.onrender.com/products")
+    fetch("https://odd-dog-pea-coat.cyclic.app/products")
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res)
+        console.log(res)
         setData(res);
         setLoading(false);
       })
@@ -57,29 +58,30 @@ const Productspage = () => {
   }
 
   return (
-    <Box w="98%" m="auto">
+    <Box w="98%" m="auto" >
       <Flex justifyContent="space-between" lineHeight="30px">
         <Box
           p={2}
-          width="22%"
+          width={['50%','25%' ,'20%','20%']}
           h="100vh"
           className="watch-left-container"
           overflow="scroll"
           overflowX="hidden"
+          fontSize={['xs','sm','lg']}
         >
           <Flex fontSize="l" alignItems="center">
             <AiOutlineLeft />
             <Text cursor="pointer">Back</Text>
           </Flex>
 
-          <Text textAlign="left" mt={1} fontSize="l" fontWeight="700">
+          <Text textAlign="left" mt={1} fontSize={['xs','sm','lg']} fontWeight="700">
             Smart Watches
           </Text>
 
           <br />
           <hr />
 
-          <Text textAlign="left" fontWeight="700" fontSize="sm">
+          <Text textAlign="left" fontWeight="700" fontSize={['xs','sm','lg']}>
             NARROW SEARCH RESULTS
           </Text>
           <Box textAlign="left" fontSize="13px">
@@ -87,7 +89,7 @@ const Productspage = () => {
             <Text className="section-left-hover-bold">ON SALE</Text>
           </Box>
 
-          <Text textAlign="left" fontWeight="700" fontSize="sm">
+          <Text textAlign="left" fontWeight="700" fontSize={['xs','sm','lg']}>
             Hot Search
           </Text>
           <Box textAlign="left" fontSize="13px">
@@ -214,11 +216,11 @@ const Productspage = () => {
           <Box h="auto" className="watch-brand">
             <Flex alignItems="center" ml="1rem" mt="3rem">
               <Box>
-                <Text>Brand : </Text>
+                <Text w='fit-content'>Brand : </Text>
               </Box>
               <Box p={1}>
                 <SimpleGrid
-                  columns={8}
+                  columns={[2,4,6,8]}
                   gap={2}
                   alignItems="center"
                   justifyContent="space-evenly"
@@ -312,67 +314,64 @@ const Productspage = () => {
 
           {/* Section 4 Price filter */}
 
-          <Box fontSize="xs" h="auto" mt={2}>
-            <Flex alignItems="center" mt="1rem">
-              <Box w="8%">
+          <Box fontSize="xs" h="auto" mt={2} ml={3}>
+            <Flex alignItems="center" mt="1rem" >
+              <Box w="fit-content">
                 <Text>Price : </Text>
               </Box>
               <Box p={1}>
                 <SimpleGrid
-                  columns={[2, 5, 6]}
+                      columns={[3,4,6,8]}
                   gap={2}
                   alignItems="center"
                   justifyContent="space-evenly"
                   flexWrap="wrap"
                 >
                   <Box className="section-price-filter" h="2rem">
-                    <Text>$5.01 - $10.00</Text>
+                    <Text>Rs 999</Text>
                   </Box>
                   <Box className="section-price-filter" h="2rem">
-                    <Text>$10.01 - $20.00</Text>
+                    <Text>Rs 1999</Text>
                   </Box>
                   <Box className="section-price-filter" h="2rem">
-                    <Text>$20.01 - $50.00</Text>
+                    <Text>Rs 3999</Text>
                   </Box>
 
                   <Box className="section-price-filter" h="2rem">
-                    <Text>$50.01 - $100.00</Text>
+                    <Text>Rs 7999</Text>
                   </Box>
 
                   <Box className="section-price-filter" h="2rem">
-                    <Text>$100.01 - $200.00</Text>
+                    <Text>Rs 9999</Text>
                   </Box>
-                  <Box className="section-price-filter" h="2rem">
-                    <Text>$200.01 - $500.00</Text>
+                   <Box className="section-price-filter" h="2rem">
+                    <Text>All</Text>
                   </Box>
 
-                  <Box className="section-price-filter" h="2rem">
-                    <Text>$500.01 - over</Text>
-                  </Box>
+                 
                 </SimpleGrid>
               </Box>
             </Flex>
           </Box>
 
           {/* section 5 Sort by categories */}
-          <Box fontSize="xs" h="auto" mt={2}>
+          <Box fontSize="xs" h="auto" mt={2} ml={3}>
             <Flex alignItems="center">
-              <Box w="8%">
-                <Text>Sort By : </Text>
+              <Box >
+                <Text w='fit-content'>Sort By : </Text>
               </Box>
               <Box p={1}>
                 <SimpleGrid
                   columns={[3, 6, 7]}
                   gap={1}
                   alignItems="center"
-                  justifyContent="space-evenly"
-                  flexWrap="wrap"
+                  justifyContent="space-around"
                 >
-                  <Box className="sort-hover-yellow" h="2rem">
+                  {/* <Box className="sort-hover-yellow" h="2rem">
                     <Text pl="1" pr="1">
                       Recommended
                     </Text>
-                  </Box>
+                  </Box> */}
                   <Box className="sort-hover-yellow" h="2rem">
                     <Text>Hottest</Text>
                   </Box>
@@ -414,18 +413,18 @@ const Productspage = () => {
             </Box>
 
             <Box>
-              <SimpleGrid columns={4} gap={4}>
+              <SimpleGrid  columns={[1,2,3,4]} gap={4}>
                 {data.length > 0 &&
-                  data?.map((item) => {
+                  data?.filter((items)=>items.category==='Watches').map((item) => {
                     return (
                       <GridItem className="watch-container">
                         <Box lineHeight="20px" textAlign="left" p={2}>
                           <Image
-                            src={item.image}
+                            src={item.image_url}
                             alt={item.brand}
                             cursor="pointer"
                           />
-                          <Text fontSize="sm" className="watch-container-title">
+                          <Text fontSize={['xs','sm','sm','sm']} className="watch-container-title">
                             {item.title}
                           </Text>
                           <Text mt="1rem" color="red" fontWeight="bold">
