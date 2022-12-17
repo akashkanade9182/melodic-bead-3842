@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import AdminLogin from "./Admin/AdminLogin";
+import AdminProducts from "./Admin/AdminProducts";
 import Chek from "./Chek";
 import Login from "./Login";
 import Productspage from "./Productspage";
@@ -16,6 +18,8 @@ export const AllRoutes = () => {
         <Route path="/chek" element={<Chek />} /> 
         <Route path='/watches' element={<Productspage/>}/>
         <Route path='/watches/:id' element={<SingleProduct/>}/>
+        <Route path='/adminlogin' element={<AdminLogin/>}/>
+        <Route path='/adminproducts' element={<AdminProducts/>}/>
       </Routes>
     </div>
   );
