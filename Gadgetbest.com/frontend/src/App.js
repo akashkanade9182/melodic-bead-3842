@@ -6,19 +6,20 @@ import Productspage from './Pages/Productspage';
 import SingleProduct from './Pages/SingleProduct';
 
 import { AllRoutes } from './Pages/AllRoutes';
+import { Cart } from './Pages/Cart';
+import { CheckoutSteps } from './Pages/Checkout';
 // import Productspage from './Pages/Productspage';
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Navbar/> */}
-      {/* <Productspage/> */}
 
-      <SingleProduct/>
-    
+      {/* <SingleProduct/>
+     <AllRoutes /> */};
 
-     <AllRoutes />
+     <Cart />
+     {/* <CheckoutSteps /> */}
 
     </div>
   );
