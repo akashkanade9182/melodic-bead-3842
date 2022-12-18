@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -66,6 +66,7 @@ const Heading2 = styled.h1`
 
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -82,7 +83,7 @@ const Signup = () => {
         }
         console.log(payload);
 
-        fetch("http://localhost:8000/signup", {
+        fetch("https://odd-dog-pea-coat.cyclic.app/signup", {
             method : "POST",
             body : JSON.stringify(payload),
             headers : {
@@ -90,7 +91,13 @@ const Signup = () => {
             }
         })
         .then((res) => res.json())
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          alert(res.Message)
+          if(res.Message === "Signup Successfully"){
+            navigate("/login")
+          }
+        })
         .catch((err) => console.log(err))
     }
     
@@ -146,12 +153,13 @@ const Signup = () => {
             <p style={{fontSize:"13px",color: "red"}}>Tip: To maximize online security, please do not reuse passwords or choose easy to guess ones on Gearbest.</p>
                 <Button type="submit" value='Register' />
             </form>
-           
+            <p>or connect via</p>
+          <a href="/auth/google"> <div style={{margin:"auto",marginTop: "10px",width: "30px"}}> <img style={{width: "50px"}} src="https://www.transparentpng.com/thumb/google-logo/shady-google-logo-pictures-png-free-BjH4wQ.png" alt="" /> </div></a>
             </Container>
-        <div><Link to='/'><button>BACK</button></Link></div>
-    </div>
+      </div>
     )
 }
+
 
 
 export default Signup;

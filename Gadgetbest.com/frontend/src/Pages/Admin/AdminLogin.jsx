@@ -1,5 +1,5 @@
 import React from "react";
-import { Link ,useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -72,9 +72,11 @@ const AdminLogin = () => {
         .then((res) => res.json())
         .then((res) => {
             console.log(res)
-            localStorage.setItem("psctoken",res.token)
-            alert("Login Successfull")
-            navigate("/adminproducts")
+            localStorage.setItem("addedProduct",res.token)
+            alert(res.Message)
+            if(res.Message === "Logged-In Successfully"){
+                navigate("/adminproducts")
+            }
         })
         .catch((err) => console.log(err))
     }
@@ -92,7 +94,6 @@ const AdminLogin = () => {
                     <Button type="submit"value="Sign In" />
                 </form>
             </Container>
-            <div><Link to='/'><button>BACK</button></Link></div>
         </div>
     )
 }
