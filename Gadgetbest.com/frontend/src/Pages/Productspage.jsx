@@ -1,7 +1,5 @@
 // Arun task - create the product page
 import {
-  Alert,
-  AlertIcon,
   Box,
   Center,
   Flex,
@@ -18,48 +16,81 @@ import { AiOutlineLeft } from "react-icons/ai";
 import { BiHomeSmile } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import Pagination from "../Components/Pagination";
-// import Pagination from "../Components/Pagination";
 import "../Styles/productpage.css";
+import axios from 'axios'
+import {
+    getDataFailure,
+    getDataRequest,
+    getDataSuccess,
+   
+  } from "../Redux/AppReducer/action";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 const Productspage = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page,setPage]= useState(1)
+  const [page, setPage] = useState(1);
+  const [query, setQuery]= useState('')
+  const dispatch = useDispatch();
+  const [sortby , setSortby]=useState('asc')
 
+
+  const { data,addCart, isLoading, isError } = useSelector((state) => {
+    return {
+      data: state.AppReducer.data,
+      addCart: state.AppReducer.addCart,
+      isLoading: state.AppReducer.isLoading,
+      isError: state.AppReducer.isError,
+    };
+  }, shallowEqual);
+
+  // console.log(addCart)
+  
+  
+  
+  
   const getData = () => {
-    setLoading(true);
+      dispatch(getDataRequest())
+    
     // fetch("https://netmeddata.onrender.com/products")
-    fetch(`https://odd-dog-pea-coat.cyclic.app/products?search=watches&page=${page}&limit=10`)
-      .then((res) => res.json())
+     return axios.get(`https://odd-dog-pea-coat.cyclic.app/products?search=Watches&sortby=${sortby}&page=${page}`)
       .then((res) => {
-        console.log(res)
-        setData(res);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(true);
-      });
-  };
+          console.log(res)
+          dispatch(getDataSuccess(res.data))
+        })
+        .catch((err) => {
+            dispatch(getDataFailure())
+        });
+    };
 
-  useEffect(() => {
-    getData();
-  }, [page]);
 
-  const handleAddToCart = () => {
+
+ 
     
-      <Alert >
-      <AlertIcon />
-      Data uploaded to the server. Fire on!
-    </Alert>
+    const handleCart=(item)=>
+    {
+        
+    }
     
-  };
+    useEffect(() => {
+        getData()
+        .then(res=>res.json())
+        .then(res=>res.data)
+        
+  }, [query,sortby,page]);
+
+  // const handleAddToCart = () => {
+    
+  //     <Alert >
+  //     <AlertIcon />
+  //     Data uploaded to the server. Fire on!
+  //   </Alert>
+    
+  // };
 
 
 
 
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Box>
         <Center>
@@ -68,7 +99,7 @@ const Productspage = () => {
       </Box>
     );
   }
-  if (error) {
+  if (isError) {
     return (
       <Box>
         <Center>
@@ -250,7 +281,7 @@ const Productspage = () => {
                   justifyContent="space-evenly"
                   flexWrap="wrap"
                 >
-                  <Box w="4rem" h="2rem" className="section-price-filter">
+                  <Box  w="4rem" h="2rem" className="section-price-filter">
                     <Image
                       p={0.5}
                       src="https://uidesign.gbtcdn.com/GB/image/brand/20181102_5779/amazfit.jpg?impolicy=hight"
@@ -380,43 +411,13 @@ const Productspage = () => {
 
           {/* section 5 Sort by categories */}
           <Box fontSize="xs" h="auto" mt={2} ml={3}>
-            <Flex alignItems="center">
-              <Box >
-                <Text w='fit-content'>Sort By : </Text>
-              </Box>
-              <Box p={1}>
-                <SimpleGrid
-                  columns={[3, 6, 7]}
-                  gap={1}
-                  alignItems="center"
-                  justifyContent="space-around"
-                >
-                  {/* <Box className="sort-hover-yellow" h="2rem">
-                    <Text pl="1" pr="1">
-                      Recommended
-                    </Text>
-                  </Box> */}
-                  <Box className="sort-hover-yellow" h="2rem">
-                    <Text>Hottest</Text>
-                  </Box>
-                  <Box className="sort-hover-yellow" h="2rem">
-                    <Text>Newest</Text>
-                  </Box>
-                  <Box className="sort-hover-yellow" h="2rem">
-                    <Text>Rating</Text>
-                  </Box>
-                  <Box className="sort-hover-yellow" h="2rem">
-                    <Text>Trending</Text>
-                  </Box>
-                  <Box className="sort-hover-yellow" h="2rem">
-                    <Text>Price Low</Text>
-                  </Box>
-                  <Box className="sort-hover-yellow" h="2rem">
-                    <Text>Price High</Text>
-                  </Box>
-                </SimpleGrid>
-              </Box>
-            </Flex>
+              <Box>
+              <Select w='fit-content' borderColor='gray.300' onChange={(e)=>setSortby(e.target.value)} placeholder="Sort By: " size={['xs','sm','sm']}>
+                <option value="asc">All</option>
+                <option  value="desc">Price low to high</option>
+                <option  value="asc">Price high to low</option>
+              </Select>
+            </Box>
           </Box>
           <br />
           <hr />
@@ -457,12 +458,9 @@ const Productspage = () => {
                             Rs. {item.price}
                           </Text>
                           <Box fontSize="xl"  textAlign="right"  mt={3}>
-                           <Flex justifyContent='space-between' >
+                           <Flex color="gray.400" justifyContent='space-between' alignItems='center' >
                            <Link to={`/Watches/${item._id}`}><Button>More Detail</Button></Link>
-                            <i
-                              onClick={handleAddToCart}
-                              class="bx bx-heart"
-                            ></i>
+                           <Button><i  class='bx bx-cart-alt'></i>Cart</Button>
                            </Flex>
                           </Box>
                         </Box>
@@ -471,6 +469,7 @@ const Productspage = () => {
                   })}
               </SimpleGrid>
               <Pagination page={page} setPage={setPage}/>
+              <br />
               <hr />
             </Box>
           </Box>
