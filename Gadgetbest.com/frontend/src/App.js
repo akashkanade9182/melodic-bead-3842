@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 // import Navbar from "./Components/Navbar.jsx"
 import AllRoutes  from './Pages/AllRoutes';
@@ -20,7 +19,7 @@ function App() {
    
      <AllRoutes />
       {/* <Navbar/> */}
-      {/* <Productspage/> */}
+      <Productspage/>
      {/* <AllRoutes /> */}
      {/* <AllProductPage/> */}
 

@@ -4,7 +4,6 @@ import {
   Center,
   Flex,
   Image,
-  Input,
   SimpleGrid,
   Table,
   TableContainer,
@@ -48,13 +47,24 @@ const SingleProduct = () => {
   console.log(data)
 
 
-  const handleCount=(value)=>
-  {
-    setCount(count+value)
+const handleQuantity=(id)=>
+{
+  const payload={
+    quantity:count
+    
   }
+  console.log(payload)
 
+  fetch(`https://odd-dog-pea-coat.cyclic.app/products/edit/${id}`,{
+    method:'PATCH',
+    body:JSON.stringify(payload),
+    headers:{'Content-Type': 'application/json'}
+  })
+  .then(res=>res.json())
+  .then(res=>console.log(res))
+  .catch(err=>console.log(err))
 
-
+}
 
 
 
@@ -189,9 +199,9 @@ const SingleProduct = () => {
                     // p="5px 20px"
                   >
                     <Center>
-                      <Button bgColor='gray.300' mr='1' size='sm'  onClick={()=>handleCount(-1)} disabled={count===1}>-</Button>
+                      <Button bgColor='gray.300' mr='1' size='sm'  onClick={()=>setCount(count-1)} disabled={count===1}>-</Button>
                       <Button bgColor='gray.300' mr='1' size='sm' disabled>{count}</Button>
-                      <Button bgColor='gray.300'  size='sm' onClick={()=>handleCount(1)} disabled={count===5}>+</Button>
+                      <Button bgColor='gray.300'  size='sm' onClick={()=>setCount(count+1)} disabled={count===5}>+</Button>
                     </Center>
                   </Box>
                 </Flex>
@@ -208,7 +218,7 @@ const SingleProduct = () => {
                     <Box ml="5px">favourite</Box>
                   </Flex>
                 </Button>
-                <Button>
+                <Button onClick={()=>handleQuantity(data._id)}>
                   <Flex alignItems="center">
                     <Box fontSize={['lg','lg','lg']} cursor="pointer">
                     <i class='bx bx-cart-alt'></i>

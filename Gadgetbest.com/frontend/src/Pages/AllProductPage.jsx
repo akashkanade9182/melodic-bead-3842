@@ -2,7 +2,6 @@ import { Box, Button, Center, Container, Flex, GridItem, Image, Select, SimpleGr
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../Components/Pagination";
-import store from "../Redux/store";
 import axios from 'axios'
 import {
     getDataFailure,
@@ -19,7 +18,7 @@ const AllProductPage = () => {
   const [sortby , setSortby]=useState('asc')
 
 
-  const { data,cart, isLoading, isError } = useSelector((state) => {
+  const { data, isLoading, isError } = useSelector((state) => {
     return {
       data: state.AppReducer.data,
       isLoading: state.AppReducer.isLoading,
@@ -45,10 +44,7 @@ const AllProductPage = () => {
     };
     
     
-    const handleCart=(item)=>
-    {
-        
-    }
+   
     
     useEffect(() => {
         getData()
@@ -56,6 +52,27 @@ const AllProductPage = () => {
         .then(res=>res.data)
         
   }, [query,sortby,page]);
+
+
+
+  const handleQuantity=(id)=>
+{
+  const payload={
+    quantity:1
+    
+  }
+  console.log(payload)
+
+  fetch(`https://odd-dog-pea-coat.cyclic.app/products/edit/${id}`,{
+    method:'PATCH',
+    body:JSON.stringify(payload),
+    headers:{'Content-Type': 'application/json'}
+  })
+  .then(res=>res.json())
+  .then(res=>console.log(res))
+  .catch(err=>console.log(err))
+
+}
 
 
     
@@ -115,7 +132,7 @@ const AllProductPage = () => {
                   data?.map((item) => {
                     return isLoading ? (
                         <>
-                        <Box  padding="3" boxShadow="lg" bg="gray.50">
+                        <Box  padding="3" boxShadow="lg" bg="white">
                           <SkeletonCircle m='auto' size="20" />
                           < SkeletonText
                             mt="4"
@@ -144,7 +161,7 @@ const AllProductPage = () => {
                           <Box fontSize="xl"  textAlign="right"  mt={3}>
                            <Flex color="gray.400" justifyContent='space-between' alignItems='center' >
                            <Link to={`/Watches/${item._id}`}><Button>More Detail</Button></Link>
-                           <Button onClick={handleCart(item)}><i  class='bx bx-cart-alt'></i>Cart</Button>
+                           <Button onClick={handleQuantity(item._id)}><i  class='bx bx-cart-alt'></i>Cart</Button>
                            </Flex>
                           </Box>
                         </Box>

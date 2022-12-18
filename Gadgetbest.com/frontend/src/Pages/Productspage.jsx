@@ -8,17 +8,10 @@ import {
   Select,
   SimpleGrid,
   Text,
-  Spinner,
-  useToast,
-  Skeleton,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
   SkeletonCircle,
   SkeletonText,
-  Stack,
 } from "@chakra-ui/react";
-import { Alert, Button } from "antd";
+import {  Button } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
@@ -33,18 +26,16 @@ import {
   getDataSuccess,
 } from "../Redux/AppReducer/action";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import CartAlert from "../Components/CartAlert";
 
 const Productspage = () => {
   const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
   const dispatch = useDispatch();
   const [sortby, setSortby] = useState("asc");
-  const toast = useToast();
 
-  const { data, addCart, isLoading, isError } = useSelector((state) => {
+  const { data,  isLoading, isError } = useSelector((state) => {
     return {
       data: state.AppReducer.data,
-      addCart: state.AppReducer.addCart,
       isLoading: state.AppReducer.isLoading,
       isError: state.AppReducer.isError,
     };
@@ -69,32 +60,39 @@ const Productspage = () => {
       });
   };
 
-  const handleCart = (item) => {};
 
   useEffect(() => {
     getData()
       .then((res) => res.json())
       .then((res) => res.data);
-  }, [query, sortby, page]);
+  }, [ sortby, page]);
 
-  // const handleAddToCart = () => {
 
-  //     <Alert >
-  //     <AlertIcon />
-  //     Data uploaded to the server. Fire on!
-  //   </Alert>
+  const handleQuantity=(id)=>
+{
+  const payload={
+    quantity:1
+    
+  }
+  console.log(payload)
 
-  // };
+  fetch(`https://odd-dog-pea-coat.cyclic.app/products/edit/${id}`,{
+    method:'PATCH',
+    body:JSON.stringify(payload),
+    headers:{'Content-Type': 'application/json'}
+  })
+  .then(res=>res.json())
+  .then(res=>console.log(res),
+  <CartAlert/>
+  )
+  .catch(err=>console.log(err))
 
-  // if (isLoading) {
-  //   return (
-  //     <Box>
-  //       <Center>
-  //       <Image h='100vh' w='100wh' src="https://c4.wallpaperflare.com/wallpaper/284/923/646/minimalism-black-loading-typography-wallpaper-preview.jpg" alt='loading image'/>
-  //       </Center>
-  //     </Box>
-  //   );
-  // }
+}
+
+
+
+
+
   if (isError) {
     return (
       <Box>
@@ -463,9 +461,9 @@ const Productspage = () => {
                   placeholder="Sort By: "
                   size={["xs", "sm", "sm"]}
                 >
-                  <option value="asc">All</option>
-                  <option value="desc">Price low to high</option>
-                  <option value="asc">Price high to low</option>
+                  <option value=" ">All</option>
+                  <option value="asc">Price low to high</option>
+                  <option value="desc">Price high to low</option>
                 </Select>
               </Box>
             </Box>
@@ -532,12 +530,7 @@ const Productspage = () => {
                                   <Button>More Detail</Button>
                                 </Link>
                                 <Button
-                                  onClick={() => (
-                                    <Alert status="success">
-                                      <AlertIcon />
-                                      Data uploaded to the server. Fire on!
-                                    </Alert>
-                                  )}
+                                  onClick={() => handleQuantity(item._id)}
                                 >
                                   <i class="bx bx-cart-alt"></i>Cart
                                 </Button>
