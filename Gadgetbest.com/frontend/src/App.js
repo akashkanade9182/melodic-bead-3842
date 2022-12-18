@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import Navbar from "./Components/Navbar.jsx"
+// import Navbar from "./Components/Navbar.jsx"
 import { AllRoutes } from './Pages/AllRoutes';
+import Homepage from "./Pages/Homepage"
 // import Productspage from './Pages/Productspage';
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
     <div className="App">
       {/* <Navbar/> */}
       {/* <Productspage/> */}
-     <AllRoutes />
+     {/* <AllRoutes /> */}
+     <Homepage/>
     </div>
   );
 }
