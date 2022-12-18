@@ -1,12 +1,13 @@
 import React,{useState,useEffect, useRef} from 'react'
 import styled from "styled-components"
 import axios from "axios"
-import {Box} from "@chakra-ui/react"
+import {Box,Text} from "@chakra-ui/react"
 import "./Searchbar.css"
+import {Link } from "react-router-dom"
 
 
 const getdata=(query)=>{
-   return axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=c0a2ff01&s=${query}`)
+   return axios.get(`https://odd-dog-pea-coat.cyclic.app/products?search=${query}`)
 }
 
 const Searchbar = ()=> {
@@ -20,8 +21,8 @@ const Searchbar = ()=> {
     const handleInputTextChange=(e)=>{
         setInputText(e.target.value)
         getdata(e.target.value).then((r)=>{
-            setSuggestions(r.data.Search)
-            console.log(r.data.Search)
+            setSuggestions(r.data)
+            console.log(r.data)
         }).catch((e)=>{
             console.log(e)
         })
@@ -43,9 +44,13 @@ const Searchbar = ()=> {
     {
        suggestions && suggestions.map((item,index)=>(
             <Boxs className="element" key={index}>
+           <Link to={`/singalProductPage/${item._id}`}>     <Box w="100%" display={"flex"} flexDirection="row" alignItems={"center"}>
 
-              <img className="poster" src={item.Poster} alt="" />
-              <div>{item.Title}</div>
+                <img className="poster" src={item.image_url} alt="" />
+              <div className="producttitles">{item.title}</div>
+                </Box>
+                </Link>
+
 
             </Boxs>
 

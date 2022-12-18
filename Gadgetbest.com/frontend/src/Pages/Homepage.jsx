@@ -41,8 +41,8 @@ const Homepage = () => {
 
 
   return (
-    <div>
-        <Navbar/>
+    <div style={{marginTop:"50px"}}>
+    
         <Slide/>
      
        <Box className="collectionbox"  display={"flex"} flexDirection="column"w={["90%","90%","90%","90%"]} m="auto" mt="20px">

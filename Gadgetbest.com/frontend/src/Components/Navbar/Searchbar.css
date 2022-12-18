@@ -11,7 +11,7 @@ top:6rem;
 width:400px;
 display:flex;
 flex-direction:column;
-max-height:400px;
+max-height:450px;
 overflow:scroll;
 z-index: 2;
 
@@ -32,8 +32,21 @@ z-index: 2;
   }
   .element:hover{
  background-color: #cfd8dc;
+ transition: 1s;
+transform: scaleX(1);
+transform: scaleY(1);
   }
+.producttitles{
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
 
+}
+.producttitle:hover{
+    background-color: #cfd8dc;
+}
 
 
 

@@ -3,11 +3,14 @@ import { Route, Routes } from "react-router-dom";
 import Chek from "./Chek";
 import Login from "./Login";
 import Signup from "./Signup";
+import Homepage from "./Homepage";
+import SingalProduct from "./SingleProduct"
 
-export const AllRoutes = () => {
+ const AllRoutes = () => {
   return (
     <div>
       <Routes>
+        <Route path="/" element={<Homepage/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} /> 
         <Route path="/chek" element={<Chek />} /> 
@@ -16,3 +19,4 @@ export const AllRoutes = () => {
     </div>
   );
 };
+export default AllRoutes;
