@@ -1,89 +1,34 @@
 import {
   Box,
-  Button,
   Center,
   Flex,
   Image,
-  SimpleGrid,
+  Img,
   Table,
+  TableCaption,
   TableContainer,
   Tbody,
   Td,
   Text,
+  Tfoot,
+  Th,
+  Thead,
   Tr,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../Styles/productpage.css";
-import { useParams } from "react-router-dom";
+import ImageLensZoom from "react-lens-zoom";
 
 const SingleProduct = () => {
-  const { id } = useParams();
-  console.log(id);
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  const getData = () => {
-    setLoading(true);
-    // fetch("https://netmeddata.onrender.com/products")
-    fetch(`https://odd-dog-pea-coat.cyclic.app/products/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res)
-        setData(res);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(true);
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-
-  console.log(data)
-
-
-
-
-
-  if (loading) {
-    return (
-      <Box>
-        <Center>
-        <Image h='100vh' w='100wh' src="https://c4.wallpaperflare.com/wallpaper/284/923/646/minimalism-black-loading-typography-wallpaper-preview.jpg" alt='loading image'/>
-        </Center>
-      </Box>
-    );
-  }
-  if (error) {
-    return (
-      <Box>
-        <Center>
-        <Image h='100vh' w='100wh' src="https://img.freepik.com/free-vector/glitch-error-404-page-background_23-2148090410.jpg?w=2000" alt='error image'/>
-        </Center>
-      </Box>
-    );
-  }
-
-
-
-
+  const imgZoom = () => <ImageLensZoom />;
   return (
     <Box>
       {/* Top head line */}
-      <Box p={3} fontSize={["xs", "xs", "xs"]} h="auto" bgColor="gray.50">
-        <Flex
-          w="80%"
-          margin="auto"
-          justifyContent="space-between"
-          flexWrap="wrap"
-        >
+      <Box p={3} fontSize={["xs", "sm", "sm"]} h="auto" bgColor="gray.50">
+        <Flex w="80%" margin="auto" justifyContent="space-between">
           <Box>
-            <Text color="gray" textAlign="left">
-              Home > Consumer Electronics > Smart Electronics > {data.subCategory} > {data.brand}
+            <Text color="gray">
+              Home > Consumer Electronics > Smart Electronics > Smart Watches
             </Text>
           </Box>
           <Box mr={3}>
@@ -111,49 +56,50 @@ const SingleProduct = () => {
 
       {/* Image and Description */}
       <Box m="auto" w="80%">
-        <SimpleGrid columns={[1, 1, 2]}>
+        <Flex>
           {/* Image  */}
-          <Box w={["100%", "100%", "100%", "100%"]}>
-            <Flex flexWrap="wrap" justifyContent="center" mt={7}>
+          <Box w="40%">
+            <Flex justifyContent="center" mt={7}>
               <Image
+                onMouseMove={imgZoom}
                 h="100%"
                 w="90%"
-                src={data.image_url}
+                src="https://cdn.pixabay.com/photo/2017/02/12/22/21/pocket-watch-2061228__340.jpg"
               />
             </Flex>
           </Box>
 
           {/* Description */}
-          <Box w={["100%"]}>
+          <Box w="60%">
             {/* Watch Title */}
             <Box w="90%" m="auto">
               <Box w="90%" mt={6}>
                 <Text textAlign="left" fontSize="lg" fontWeight="bold">
-                 {data.title}
+                  KD99 Sports Smart Watch Ultra Series 8 NFC Smartwatch
+                  Bluetooth Call Wireless Charging HD Screen - Gold China
                 </Text>
               </Box>
               <br />
 
               <Box>
                 <Text color="gray" textAlign="left">
-                 Brand: {data.brand}
+                  KD99 Sports Smart Watch Ultra Series 8
                 </Text>
               </Box>
               <br />
               <Box bg="gray.50">
                 <Text color="gray" p="20px 10px" textAlign="left">
-                  Price : {data.price}
+                  Price : 10000
                 </Text>
               </Box>
 
               <Box mt="5">
-                <Flex w={["100%"]}>
-                  <Box w="fit-content">Color :</Box>
+                <Flex w="50%" justifyContent="space-between">
+                  <Box p="10px 0px">Color :</Box>
                   <Box
                     className="section-price-filter"
                     borderColor="gray.400"
-                    p="5px 20px"
-                    ml={2}
+                    p="8px 30px"
                   >
                     <Center>
                       <Text cursor="pointer">Gold</Text>
@@ -162,8 +108,7 @@ const SingleProduct = () => {
                   <Box
                     className="section-price-filter"
                     borderColor="gray.400"
-                    p="5px 20px"
-                    ml={2}
+                    p="8px 30px"
                   >
                     <Center>
                       <Text>Black</Text>
@@ -171,14 +116,14 @@ const SingleProduct = () => {
                   </Box>
                 </Flex>
               </Box>
-              <Box mt="5" fontSize={["sm", "sm", "lg"]}>
+              <Box mt="5">
                 <Flex>
                   <Box p="10px 0px">Ships From :</Box>
                   <Box
                     ml="2rem"
                     border="2px"
                     borderColor="red.400"
-                    p="5px 20px"
+                    p="8px 30px"
                   >
                     <Center>
                       <Text>China</Text>
@@ -190,29 +135,25 @@ const SingleProduct = () => {
               <br />
 
               <Box>
-                <Button mr={2}>
-                  <Flex alignItems="center">
-                    <Box fontSize="2xl" cursor="pointer">
-                      <i class="bx bx-heart"></i>
-                    </Box>
-                    <Box ml="5px">favourite</Box>
-                  </Flex>
-                </Button>
-                <Button>
-                  <Flex alignItems="center">
-                    <Box fontSize="2xl" cursor="pointer">
-                    <i class='bx bx-cart-alt'></i>
-                    </Box>
-                    <Box ml="5px">Cart</Box>
-                  </Flex>
-                </Button>
+                <Flex alignItems="center">
+                  <Box fontSize="2xl" cursor="pointer">
+                    <i class="bx bx-heart"></i>
+                  </Box>
+                  <Box ml="5px">Add to favourite</Box>
+                </Flex>
               </Box>
 
               <br />
 
-              <Box h="max-content" fontSize={["sm", "sm", "sm"]}>
-                <SimpleGrid columns={[1, 1, 3, 6]}>
-                 
+              <Box h="50px" fontSize={["sm", "sm", "sm"]}>
+                <Flex alignItems="center" justifyContent="space-around">
+                  <Box>
+                    <Image
+                      h="100%"
+                      w="40px"
+                      src="https://css.gbtcdn.com/imagecache/gbw/img/site/paypal@.png"
+                    />
+                  </Box>
                   <Box>
                     <Image
                       h="100%"
@@ -259,13 +200,13 @@ const SingleProduct = () => {
                       <Box>Report Item</Box>
                     </Flex>
                   </Box>
-                </SimpleGrid>
+                </Flex>
               </Box>
 
               <Box></Box>
             </Box>
           </Box>
-        </SimpleGrid>
+        </Flex>
       </Box>
 
       {/* Description */}
@@ -294,7 +235,7 @@ const SingleProduct = () => {
           <br />
 
           <Box>
-            <Text>{data.brand}</Text>
+            <Text>Title of Watch</Text>
           </Box>
 
           <br />
@@ -505,9 +446,9 @@ const SingleProduct = () => {
           <hr />
           <br />
           <Box>
-            <Flex justifyContent="space-between">
-              <Box fontSize="4xl" color="gray.200" fontWeight="bold">
-                <Text textAlign="left">0</Text>
+            <Flex  justifyContent='space-between'>
+              <Box fontSize='4xl' color='gray.200' fontWeight='bold'>
+                <Text textAlign='left'>0</Text>
                 <Flex>
                   <i class="bx bxs-star"></i>
                   <i class="bx bxs-star"></i>
@@ -516,18 +457,9 @@ const SingleProduct = () => {
                   <i class="bx bxs-star"></i>
                 </Flex>
               </Box>
-              <Box>
+              <Box  border='1px solid black'>
                 <Center>
-                  <Text
-                    border="1px solid black"
-                    cursor="pointer"
-                    bgColor="yellow.400"
-                    fontWeight="bold"
-                    borderRadius="5px"
-                    p={3}
-                  >
-                    Write a Review
-                  </Text>
+                  <Text>Write a Review</Text>
                 </Center>
               </Box>
             </Flex>
@@ -536,8 +468,6 @@ const SingleProduct = () => {
           <br />
           <br />
           <hr />
-          <br />
-          <br />
         </Box>
       </Box>
     </Box>

@@ -3,7 +3,6 @@ import {
   Alert,
   AlertIcon,
   Box,
-  Center,
   Flex,
   GridItem,
   Image,
@@ -11,29 +10,23 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import { Button } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { BiHomeSmile } from "react-icons/bi";
-import { Link } from "react-router-dom";
-import Pagination from "../Components/Pagination";
-// import Pagination from "../Components/Pagination";
 import "../Styles/productpage.css";
 
 const Productspage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [page,setPage]= useState(1)
 
   const getData = () => {
     setLoading(true);
-    // fetch("https://netmeddata.onrender.com/products")
-    fetch(`https://odd-dog-pea-coat.cyclic.app/products?search=watches&page=${page}&limit=10`)
+    fetch("https://netmeddata.onrender.com/products")
       .then((res) => res.json())
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         setData(res);
         setLoading(false);
       })
@@ -44,7 +37,7 @@ const Productspage = () => {
 
   useEffect(() => {
     getData();
-  }, [page]);
+  }, []);
 
   const handleAddToCart = () => {
     
@@ -55,57 +48,38 @@ const Productspage = () => {
     
   };
 
-
-
-
-
   if (loading) {
-    return (
-      <Box>
-        <Center>
-        <Image h='100vh' w='100wh' src="https://c4.wallpaperflare.com/wallpaper/284/923/646/minimalism-black-loading-typography-wallpaper-preview.jpg" alt='loading image'/>
-        </Center>
-      </Box>
-    );
-  }
-  if (error) {
-    return (
-      <Box>
-        <Center>
-        <Image h='100vh' w='100wh' src="https://img.freepik.com/free-vector/glitch-error-404-page-background_23-2148090410.jpg?w=2000" alt='error image'/>
-        </Center>
-      </Box>
-    );
+    return <h1>.....Loading</h1>;
   }
 
-  else{
+  if (error) {
+    return <h1>....Something went wrong</h1>;
+  }
+
   return (
-    <Box w="98%" m="auto" >
-      <Flex  justifyContent="space-between" lineHeight="25px">
+    <Box w="98%" m="auto">
+      <Flex justifyContent="space-between" lineHeight="30px">
         <Box
           p={2}
-          width={['40%','25%' ,'20%','20%']}
+          width="22%"
           h="100vh"
           className="watch-left-container"
           overflow="scroll"
           overflowX="hidden"
-          fontSize={['xs','sm','lg']}
         >
-          <Flex fontSize="l" alignItems="center" w='fit-content'>
+          <Flex fontSize="l" alignItems="center">
             <AiOutlineLeft />
-            <Link to='/'>
             <Text cursor="pointer">Back</Text>
-            </Link>
           </Flex>
 
-          <Text textAlign="left" mt={1} fontSize={['xs','sm','lg']} fontWeight="700">
+          <Text textAlign="left" mt={1} fontSize="l" fontWeight="700">
             Smart Watches
           </Text>
 
           <br />
           <hr />
 
-          <Text textAlign="left" fontWeight="700" fontSize={['xs','sm','lg']}>
+          <Text textAlign="left" fontWeight="700" fontSize="sm">
             NARROW SEARCH RESULTS
           </Text>
           <Box textAlign="left" fontSize="13px">
@@ -113,10 +87,10 @@ const Productspage = () => {
             <Text className="section-left-hover-bold">ON SALE</Text>
           </Box>
 
-          <Text textAlign="left" fontWeight="700" fontSize={['xs','sm','lg']}>
+          <Text textAlign="left" fontWeight="700" fontSize="sm">
             Hot Search
           </Text>
-          <Box textAlign="left" fontSize={['xs','xs','sm']}>
+          <Box textAlign="left" fontSize="13px">
             <Text className="section-left-hover-bold">Wrist bracelet</Text>
             <Text className="section-left-hover-bold"> Smartwatch Strap</Text>
             <Text className="section-left-hover-bold">Fashion Bracelet</Text>
@@ -213,9 +187,9 @@ const Productspage = () => {
             borderBottom="2px solid orange"
             w="95%"
           >
-            <Flex alignItems="center" flexWrap='wrap'>
+            <Flex alignItems="center">
               <Box width="fit-content" bgColor="yellow" borderRadius="50px">
-                <Flex >
+                <Flex>
                   <Box
                     p="2px"
                     w="30px"
@@ -240,11 +214,11 @@ const Productspage = () => {
           <Box h="auto" className="watch-brand">
             <Flex alignItems="center" ml="1rem" mt="3rem">
               <Box>
-                <Text w='fit-content'>Brand : </Text>
+                <Text>Brand : </Text>
               </Box>
               <Box p={1}>
                 <SimpleGrid
-                  columns={[2,4,6,8]}
+                  columns={8}
                   gap={2}
                   alignItems="center"
                   justifyContent="space-evenly"
@@ -338,64 +312,67 @@ const Productspage = () => {
 
           {/* Section 4 Price filter */}
 
-          <Box fontSize="xs" h="auto" mt={2} ml={3}>
-            <Flex alignItems="center" mt="1rem" >
-              <Box w="fit-content">
+          <Box fontSize="xs" h="auto" mt={2}>
+            <Flex alignItems="center" mt="1rem">
+              <Box w="8%">
                 <Text>Price : </Text>
               </Box>
               <Box p={1}>
                 <SimpleGrid
-                      columns={[3,4,6,8]}
+                  columns={[2, 5, 6]}
                   gap={2}
                   alignItems="center"
                   justifyContent="space-evenly"
                   flexWrap="wrap"
                 >
-                  <Box className="section-price-filter" pl='1' pr='1'  h='fit-content'>
-                    <Text>Rs 999</Text>
+                  <Box className="section-price-filter" h="2rem">
+                    <Text>$5.01 - $10.00</Text>
                   </Box>
-                  <Box className="section-price-filter" pl='1' pr='1'  h='fit-content'>
-                    <Text>Rs 1999</Text>
+                  <Box className="section-price-filter" h="2rem">
+                    <Text>$10.01 - $20.00</Text>
                   </Box>
-                  <Box className="section-price-filter" pl='1' pr='1'  h='fit-content'>
-                    <Text>Rs 3999</Text>
-                  </Box>
-
-                  <Box className="section-price-filter"  pl='1' pr='1' h='fit-content'>
-                    <Text>Rs 7999</Text>
+                  <Box className="section-price-filter" h="2rem">
+                    <Text>$20.01 - $50.00</Text>
                   </Box>
 
-                  <Box className="section-price-filter"  pl='1' pr='1' h='fit-content'>
-                    <Text>Rs 9999</Text>
-                  </Box>
-                   <Box className="section-price-filter"  pl='1' pr='1' h='fit-content'>
-                    <Text>All</Text>
+                  <Box className="section-price-filter" h="2rem">
+                    <Text>$50.01 - $100.00</Text>
                   </Box>
 
-                 
+                  <Box className="section-price-filter" h="2rem">
+                    <Text>$100.01 - $200.00</Text>
+                  </Box>
+                  <Box className="section-price-filter" h="2rem">
+                    <Text>$200.01 - $500.00</Text>
+                  </Box>
+
+                  <Box className="section-price-filter" h="2rem">
+                    <Text>$500.01 - over</Text>
+                  </Box>
                 </SimpleGrid>
               </Box>
             </Flex>
           </Box>
 
           {/* section 5 Sort by categories */}
-          <Box fontSize="xs" h="auto" mt={2} ml={3}>
+          <Box fontSize="xs" h="auto" mt={2}>
             <Flex alignItems="center">
-              <Box >
-                <Text w='fit-content'>Sort By : </Text>
+              <Box w="8%">
+                <Text>Sort By : </Text>
               </Box>
               <Box p={1}>
                 <SimpleGrid
                   columns={[3, 6, 7]}
                   gap={1}
                   alignItems="center"
-                  justifyContent="space-around"
+                  justifyContent="space-evenly"
+                  flexWrap="wrap"
                 >
-                  {/* <Box className="sort-hover-yellow" h="2rem">
+                  <Box className="sort-hover-yellow" h="2rem">
                     <Text pl="1" pr="1">
                       Recommended
                     </Text>
-                  </Box> */}
+                  </Box>
                   <Box className="sort-hover-yellow" h="2rem">
                     <Text>Hottest</Text>
                   </Box>
@@ -437,48 +414,40 @@ const Productspage = () => {
             </Box>
 
             <Box>
-              <SimpleGrid  columns={[1,2,3,4]} gap={4}>
+              <SimpleGrid columns={4} gap={4}>
                 {data.length > 0 &&
                   data?.map((item) => {
                     return (
                       <GridItem className="watch-container">
                         <Box lineHeight="20px" textAlign="left" p={2}>
-                         
-                         <Link to={`/Watches/${item._id}`}>
-                         <Image
-                            src={item.image_url}
+                          <Image
+                            src={item.image}
                             alt={item.brand}
                             cursor="pointer"
-                          /></Link> 
-                          <Text fontSize={['xs','sm','sm','sm']} className="watch-container-title">
+                          />
+                          <Text fontSize="sm" className="watch-container-title">
                             {item.title}
                           </Text>
                           <Text mt="1rem" color="red" fontWeight="bold">
                             Rs. {item.price}
                           </Text>
-                          <Box fontSize="xl"  textAlign="right"  mt={3}>
-                           <Flex justifyContent='space-between' >
-                           <Link to={`/Watches/${item._id}`}><Button>More Detail</Button></Link>
+                          <Box fontSize="xl" color="red" textAlign="right">
                             <i
                               onClick={handleAddToCart}
                               class="bx bx-heart"
                             ></i>
-                           </Flex>
                           </Box>
                         </Box>
                       </GridItem>
                     );
                   })}
               </SimpleGrid>
-              <Pagination page={page} setPage={setPage}/>
-              <hr />
             </Box>
           </Box>
         </Box>
       </Flex>
     </Box>
-  )
-                }
+  );
 };
 
 export default Productspage;

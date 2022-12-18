@@ -42,7 +42,7 @@
 
   /* width */
   .watch-left-container::-webkit-scrollbar {
-    width: 3px;
+    width: 6px;
   }
   
   /* Track */
@@ -110,7 +110,7 @@
   .watch-container-title
   {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;  
     overflow: hidden;
     text-overflow: ellipsis;

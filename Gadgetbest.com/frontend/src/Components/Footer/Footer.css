@@ -1,0 +1,22 @@
+.qimage{
+    margin: auto;
+}
+.socialicons{
+
+}
+.heading{
+    font-weight: bold;
+}
+.inputbar>input{
+width: 500px;
+height:40px;
+padding: 10px 10px;
+border:0.5px solid black
+}
+.inputbar>button{
+    background-color: black;
+    color: white;
+  
+    height:40px;
+    padding: 10px 10px;
+}

@@ -6,6 +6,10 @@ import Navbar from "./Components/Navbar.jsx"
 import SingleProduct from './Pages/SingleProduct';
 
 import { AllRoutes } from './Pages/AllRoutes';
+import CheckoutPage from './Pages/CheckoutPage';
+import PaymentPage from './Pages/PaymentPage';
+
+
 // import Productspage from './Pages/Productspage';
 
 
@@ -15,10 +19,12 @@ function App() {
       {/* <Navbar/> */}
       {/* <Productspage/> */}
      <AllRoutes />
+      {/* <SingleProduct/>
+     <AllRoutes /> */}
 
-      {/* <SingleProduct/> */}
-    
-
+     {/* <Cart /> */}
+     <CheckoutPage />
+     <PaymentPage />
 
     </div>
   );

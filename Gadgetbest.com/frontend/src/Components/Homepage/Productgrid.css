@@ -1,0 +1,25 @@
+.loadingimage{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+   
+}
+.loadbutton{
+    background-color: yellow;
+    color:black;
+    padding:5px 5px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.collection-heading{
+    font-size: 25px;
+    font-weight: bold;
+    align-self: left;
+}
+.pgrid>h1{
+align-content: flex-start;
+text-align: left;
+margin-left: 68px;
+font-family: sans-serif;
+
+}
