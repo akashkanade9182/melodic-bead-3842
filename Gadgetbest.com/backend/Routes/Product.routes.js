@@ -14,6 +14,32 @@ productRoutes.get("/",async (req,res) => {
     const limitBy = Number(req.query.limit) || 10;
 
 
+    if(searched && sortBy && page && limitBy){
+
+        try {
+            if(sortBy == "asc"){
+                const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*1).limit(limitBy).sort({price:1})
+                res.send(products)
+            }
+
+               else if(sortBy == "desc"){
+                const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*1).limit(limitBy).sort({price:-1})
+                res.send(products)
+            }
+
+               else res.send({"Message":"Something Went Wrong, searched After Sometimes"})
+    }
+
+    catch (err){
+        console.log(err)
+        res.send({"Message":"Something Went Wrong, searched After Sometimes"})
+    }
+
+}
+
+
+
+
      if(searched && page && limitBy){
 
         try {
@@ -38,6 +64,29 @@ productRoutes.get("/",async (req,res) => {
         catch (err) {
             console.log(err)
             res.send({"Messsage":"Something Went Wrong"})
+        }
+    }
+
+    else if(searched && sortBy){
+
+        try {
+            if(sortBy == "asc"){
+                const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).sort({price:1})
+                res.send(products)
+               }
+
+               else if(sortBy == "desc"){
+                const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).sort({price:-1})
+                res.send(products)
+               }
+
+               else res.send({"Message":"Something Went Wrong, searched After Sometimes"})
+            
+        } 
+        
+        catch (err) {
+            console.log(err)
+            res.send({"Message":"Something Went Wrong, searched After Sometimes"})
         }
     }
 
@@ -67,7 +116,7 @@ productRoutes.get("/",async (req,res) => {
              const products = await ProductModel.find().sort({price:-1})
              res.send(products)
             }
-            else res.send("error")
+            else res.send({"Message":"Something Went Wrong, searched After Sometimes"})
              
          }
  
