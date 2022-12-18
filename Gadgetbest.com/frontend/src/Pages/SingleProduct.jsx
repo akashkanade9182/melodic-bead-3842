@@ -4,6 +4,7 @@ import {
   Center,
   Flex,
   Image,
+  Input,
   SimpleGrid,
   Table,
   TableContainer,
@@ -18,10 +19,11 @@ import { useParams } from "react-router-dom";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [count, setCount]=useState(1)
 
   const getData = () => {
     setLoading(true);
@@ -44,6 +46,14 @@ const SingleProduct = () => {
 
 
   console.log(data)
+
+
+  const handleCount=(value)=>
+  {
+    setCount(count+value)
+  }
+
+
 
 
 
@@ -142,7 +152,7 @@ const SingleProduct = () => {
               <br />
               <Box bg="gray.50">
                 <Text color="gray" p="20px 10px" textAlign="left">
-                  Price : {data.price}
+                  Price : {data.price} 
                 </Text>
               </Box>
 
@@ -152,36 +162,36 @@ const SingleProduct = () => {
                   <Box
                     className="section-price-filter"
                     borderColor="gray.400"
-                    p="5px 20px"
+                    // p="5px 20px"
                     ml={2}
                   >
                     <Center>
-                      <Text cursor="pointer">Gold</Text>
+                      <Text p={1} cursor="pointer">Gold</Text>
                     </Center>
                   </Box>
                   <Box
                     className="section-price-filter"
                     borderColor="gray.400"
-                    p="5px 20px"
+                    // p="5px 20px"
                     ml={2}
                   >
                     <Center>
-                      <Text>Black</Text>
+                      <Text p={1}>Black</Text>
                     </Center>
                   </Box>
                 </Flex>
               </Box>
               <Box mt="5" fontSize={["sm", "sm", "lg"]}>
-                <Flex>
-                  <Box p="10px 0px">Ships From :</Box>
+                <Flex alignItems='center'>
+                  <Box  w='fit-content'>Quantity :</Box>
                   <Box
                     ml="2rem"
-                    border="2px"
-                    borderColor="red.400"
-                    p="5px 20px"
+                    // p="5px 20px"
                   >
                     <Center>
-                      <Text>China</Text>
+                      <Button bgColor='gray.300' mr='1' size='sm'  onClick={()=>handleCount(-1)} disabled={count===1}>-</Button>
+                      <Button bgColor='gray.300' mr='1' size='sm' disabled>{count}</Button>
+                      <Button bgColor='gray.300'  size='sm' onClick={()=>handleCount(1)} disabled={count===5}>+</Button>
                     </Center>
                   </Box>
                 </Flex>
@@ -192,7 +202,7 @@ const SingleProduct = () => {
               <Box>
                 <Button mr={2}>
                   <Flex alignItems="center">
-                    <Box fontSize="2xl" cursor="pointer">
+                    <Box fontSize={['lg','lg','lg']} cursor="pointer">
                       <i class="bx bx-heart"></i>
                     </Box>
                     <Box ml="5px">favourite</Box>
@@ -200,7 +210,7 @@ const SingleProduct = () => {
                 </Button>
                 <Button>
                   <Flex alignItems="center">
-                    <Box fontSize="2xl" cursor="pointer">
+                    <Box fontSize={['lg','lg','lg']} cursor="pointer">
                     <i class='bx bx-cart-alt'></i>
                     </Box>
                     <Box ml="5px">Add to Cart</Box>
