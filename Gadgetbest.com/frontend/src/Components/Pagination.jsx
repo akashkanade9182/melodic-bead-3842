@@ -13,9 +13,10 @@ const Pagination = ({page,setPage}) => {
   return (
     <>
     <br />
-    <Button size={['xs','sm','lg']} mr={2} disabled={page===1 } onClick={()=>handlePage(-1)}>Prev</Button>
-    <Button size={['xs','sm','lg']}>{page}</Button>
-    <Button size={['xs','sm','lg']} ml={2}  onClick={()=>handlePage(1)}>Next</Button>
+    <Button size={['xs','sm','sm']} mr={2} disabled={page===1 } onClick={()=>handlePage(-1)}>Prev</Button>
+    <Button size={['xs','sm','sm']}>{page}</Button>
+    <Button size={['xs','sm','sm']} ml={2} disabled={page===5} onClick={()=>handlePage(1)}>Next</Button>
+    <br />
     </>
   )
 }

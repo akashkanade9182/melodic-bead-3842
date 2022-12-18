@@ -82,8 +82,8 @@ const SingleProduct = () => {
           flexWrap="wrap"
         >
           <Box>
-            <Text color="gray" textAlign="left">
-              Home > Consumer Electronics > Smart Electronics > {data.subCategory} > {data.brand}
+            <Text color="gray" textAlign="left" alignItems='center'>
+              Home <i class='bx bx-chevron-right'></i> Consumer Electronics <i class='bx bx-chevron-right'></i> Smart Electronics <i class='bx bx-chevron-right'></i> {data.subCategory} <i class='bx bx-chevron-right'></i> {data.brand}
             </Text>
           </Box>
           <Box mr={3}>
@@ -203,7 +203,7 @@ const SingleProduct = () => {
                     <Box fontSize="2xl" cursor="pointer">
                     <i class='bx bx-cart-alt'></i>
                     </Box>
-                    <Box ml="5px">Cart</Box>
+                    <Box ml="5px">Add to Cart</Box>
                   </Flex>
                 </Button>
               </Box>
