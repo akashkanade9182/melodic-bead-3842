@@ -4,12 +4,15 @@ import Chek from "./Chek";
 import Login from "./Login";
 import Productspage from "./Productspage";
 import Signup from "./Signup";
+import Homepage from "./Homepage";
+import SingalProduct from "./SingleProduct"
 import SingleProduct from "./SingleProduct";
 
-export const AllRoutes = () => {
+ const AllRoutes = () => {
   return (
     <div>
       <Routes>
+        <Route path="/" element={<Homepage/>}/>
         {/* <Route path="/" element={<HomePage/>}/> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} /> 
@@ -20,3 +23,4 @@ export const AllRoutes = () => {
     </div>
   );
 };
+export default AllRoutes;
