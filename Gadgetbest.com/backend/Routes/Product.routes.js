@@ -10,8 +10,38 @@ productRoutes.get("/",async (req,res) => {
 
     const searched = req.query.search;
     const sortBy = req.query.sortby;
+    const page = Number(req.query.page);
+    const limitBy = Number(req.query.limit) || 10;
 
-    if(searched){
+
+     if(searched && page && limitBy){
+
+        try {
+            const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*1).limit(limitBy)
+            res.send(products)
+        } 
+        
+        catch (err){
+            console.log(err)
+            res.send({"Message":"Something Went Wrong, searched After Sometimes"})
+        }
+    }
+
+    else if (page && limitBy){
+
+        try {
+            const products = await ProductModel.find().skip((page-1)*1).limit(limitBy)
+            console.log("pagination Success");
+            res.send(products);
+        }
+        
+        catch (err) {
+            console.log(err)
+            res.send({"Messsage":"Something Went Wrong"})
+        }
+    }
+
+    else if(searched){
 
         try {
             const products = await ProductModel.find({title:{$regex:searched,$options:'i'}})
@@ -61,6 +91,26 @@ productRoutes.get("/",async (req,res) => {
     }
    }
 })
+
+
+productRoutes.get("/:id", async(req,res) => {
+    
+
+    try {
+        const productID = req.params.id
+        const products = await ProductModel.findById({_id:productID})
+        res.send(products)
+    } 
+    
+    catch (err) {
+        console.log(err)
+            res.send({"Message":"Something Went Wrong, Try After Sometimes"})
+    }
+})
+
+
+
+
 
 
 productRoutes.post("/add", async(req,res) => {
