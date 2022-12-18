@@ -1,4 +1,4 @@
-import { Box, Button, Center, Container, Flex, GridItem, Image, Select, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Container, Flex, GridItem, Image, Select, SimpleGrid, SkeletonCircle, SkeletonText, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../Components/Pagination";
@@ -59,15 +59,7 @@ const AllProductPage = () => {
 
 
     
-  if (isLoading) {
-    return (
-      <Box>
-        <Center>
-        <Image h='100vh' w='100wh' src="https://c4.wallpaperflare.com/wallpaper/284/923/646/minimalism-black-loading-typography-wallpaper-preview.jpg" alt='loading image'/>
-        </Center>
-      </Box>
-    );
-  }
+  
   if (isError) {
     return (
       <Box>
@@ -92,7 +84,8 @@ const AllProductPage = () => {
                 <Button size={['xs','sm','lg']} onClick={()=>setQuery(' ')}>All Products</Button>
                 <Button size={['xs','sm','lg']} onClick={()=>setQuery('Watches')}>Watches</Button>
                 <Button size={['xs','sm','lg']} onClick={()=>setQuery('Fitness Equipment')}>Fitness Equipment</Button>
-                <Button size={['xs','sm','lg']} onClick={()=>setQuery('Electricals')}>Robots</Button>
+                <Button size={['xs','sm','lg']} onClick={()=>setQuery('Mobile')}>Mobile</Button>
+                <Button size={['xs','sm','lg']} onClick={()=>setQuery('Electronic')}>Electronic</Button>
             </Flex>
         </Box> 
         <br />
@@ -116,12 +109,23 @@ const AllProductPage = () => {
         </Box>
 
 <br />
-<br />
        <Box w='90%' m='auto'>
         <SimpleGrid  columns={[1,2,3,4]} gap={10}>
                 {data.length > 0 &&
                   data?.map((item) => {
-                    return (
+                    return isLoading ? (
+                        <>
+                        <Box  padding="3" boxShadow="lg" bg="gray.50">
+                          <SkeletonCircle m='auto' size="20" />
+                          < SkeletonText
+                            mt="4"
+                            noOfLines={6}
+                            spacing="4"
+                            skeletonHeight="5"
+                          />
+                        </Box>
+                      </>
+                    ) : (
                       <GridItem className="watch-container">
                         <Box lineHeight="20px" textAlign="left" p={2}>
                          
