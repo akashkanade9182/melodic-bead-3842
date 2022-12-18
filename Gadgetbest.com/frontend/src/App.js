@@ -6,8 +6,10 @@ import Productspage from './Pages/Productspage';
 import SingleProduct from './Pages/SingleProduct';
 
 import { AllRoutes } from './Pages/AllRoutes';
-import { Cart } from './Pages/Cart';
-import { CheckoutSteps } from './Pages/Checkout';
+import CheckoutPage from './Pages/CheckoutPage';
+import PaymentPage from './Pages/PaymentPage';
+
+
 // import Productspage from './Pages/Productspage';
 
 
@@ -16,10 +18,11 @@ function App() {
     <div className="App">
 
       {/* <SingleProduct/>
-     <AllRoutes /> */};
+     <AllRoutes /> */}
 
-     <Cart />
-     {/* <CheckoutSteps /> */}
+     {/* <Cart /> */}
+     <CheckoutPage />
+     <PaymentPage />
 
     </div>
   );
