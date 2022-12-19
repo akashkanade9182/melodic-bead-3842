@@ -1,31 +1,30 @@
+import logo from './logo.svg';
 import './App.css';
-// import Navbar from "./Components/Navbar.jsx"
-import AllRoutes  from './Pages/AllRoutes';
-import Homepage from "./Pages/Homepage"
-import Navbar from './Components/Navbar/Navbar';
+import Navbar from "./Components/Navbar.jsx"
 
-import Productspage from './Pages/Productspage';
+// import Productspage from './Pages/Productspage';
 import SingleProduct from './Pages/SingleProduct';
 
+import { AllRoutes } from './Pages/AllRoutes';
+import CheckoutPage from './Pages/CheckoutPage';
+import PaymentPage from './Pages/PaymentPage';
 
-import AllProductPage from './Pages/AllProductPage';
+
 // import Productspage from './Pages/Productspage';
 
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-   
-     <AllRoutes />
       {/* <Navbar/> */}
-      <Productspage/>
-     {/* <AllRoutes /> */}
-     {/* <AllProductPage/> */}
+      {/* <Productspage/> */}
+     <AllRoutes />
+      {/* <SingleProduct/>
+     <AllRoutes /> */}
 
-      {/* <SingleProduct/> */}
-    
-
+     {/* <Cart /> */}
+     <CheckoutPage />
+     <PaymentPage />
 
     </div>
   );
