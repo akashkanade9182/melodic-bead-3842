@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
-import {message} from "antd";
 
 const Container = styled.div`
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -78,6 +77,7 @@ cursor: pointer;
 `;
 
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -88,7 +88,7 @@ const Login = () => {
             password
         }
        
-        fetch("http://localhost:8000/login", {
+        fetch("https://odd-dog-pea-coat.cyclic.app/login", {
             method : "POST",
             body : JSON.stringify(payload),
             headers : {
@@ -98,13 +98,15 @@ const Login = () => {
         .then((res) => res.json())
         .then((res) => {
             console.log(res)
+            alert(res.Message);
             localStorage.setItem("psctoken",res.token)
-            // message.success("Login Successfull");
-            alert("Login Successfull");
-            window.location.href("/");
+            if(res.Message === "Logged-In Successfully"){
+                navigate("/")
+            }
         })
-        .catch((err) => console.log(err))
-    
+        .catch((err) => {
+            console.log(err)
+        })
     }
     
     return(       
@@ -123,8 +125,9 @@ const Login = () => {
                     </ForgotDiv>
                     <Button type="submit"value="Sign In" />
                 </form>
+                <p>or connect via</p>
+          <a href="/auth/google"> <div style={{margin:"auto",marginTop: "10px",width: "30px"}}> <img style={{width: "50px"}} src="https://www.transparentpng.com/thumb/google-logo/shady-google-logo-pictures-png-free-BjH4wQ.png" alt="" /> </div></a>
             </Container>
-            <div><Link to='/'><button>BACK</button></Link></div>
         </div>
     )
 }

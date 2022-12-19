@@ -1,29 +1,35 @@
 import React from 'react'
 import "./Navbar.css"
-import {
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    MenuItemOption,
-    MenuGroup,
-    MenuOptionGroup,
-    MenuDivider,
-  } from '@chakra-ui/react'
-  import {ChevronDownIcon } from '@chakra-ui/icons'
-import { Flex, Spacer,Box,Heading,ButtonGroup,Button, } from '@chakra-ui/react'
+import {ChevronDownIcon ,Search2Icon} from '@chakra-ui/icons'
+import { BiGroup} from "react-icons/bi";
+import { CiHeart } from "react-icons/ci";
+import { Flex, Spacer,Box,Heading,ButtonGroup,Button,SimpleGrid } from '@chakra-ui/react'
+import MenuButtons from './MenuButton';
+import Searchbar from './Searchbar';
+import Qrcode from './Qrcode';
+import Sign from "../Navbar/Sign"
+import {Link,useNavigate} from "react-router-dom"
+
+
 
 const Navbar = () => {
+
+    const navigate=useNavigate()
+
+    const handleNavigate=()=>{
+        navigate("/")
+    }
+
+
   return (
-    <Flex width={"100%"} minWidth='max-content' alignItems={"right"}  direction={"column"}  gap='2'>
-        <Flex h={"2rem"} display="flex" justifyContent={"flex-end"} w='100%' bg="red">
+    <>
+    <Flex width={["90%","90%","90%","90%"]} position="fix" display={["none","none","none","flex"]} h="150px" margin={"auto"} alignItems={"right"}  direction={"column"}  gap='2' m="auto">
+        <Flex className='topnav'  h={"2rem"} display={["none","none","none","flex"]} justifyContent={"space-around"} flexDirection="row" alignItems={"center"}  w='60%' bg="white" marginLeft={"40%"}>
             
-            <div>   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone-flip" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11 1H5a1 1 0 0 0-1 1v6a.5.5 0 0 1-1 0V2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6a.5.5 0 0 1-1 0V2a1 1 0 0 0-1-1Zm1 13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a.5.5 0 0 0-1 0v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2a.5.5 0 0 0-1 0v2ZM1.713 7.954a.5.5 0 1 0-.419-.908c-.347.16-.654.348-.882.57C.184 7.842 0 8.139 0 8.5c0 .546.408.94.823 1.201.44.278 1.043.51 1.745.696C3.978 10.773 5.898 11 8 11c.099 0 .197 0 .294-.002l-1.148 1.148a.5.5 0 0 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2a.5.5 0 1 0-.708.708l1.145 1.144L8 10c-2.04 0-3.87-.221-5.174-.569-.656-.175-1.151-.374-1.47-.575C1.012 8.639 1 8.506 1 8.5c0-.003 0-.059.112-.17.115-.112.31-.242.6-.376Zm12.993-.908a.5.5 0 0 0-.419.908c.292.134.486.264.6.377.113.11.113.166.113.169 0 .003 0 .065-.13.187-.132.122-.352.26-.677.4-.645.28-1.596.523-2.763.687a.5.5 0 0 0 .14.99c1.212-.17 2.26-.43 3.02-.758.38-.164.713-.357.96-.587.246-.229.45-.537.45-.919 0-.362-.184-.66-.412-.883-.228-.223-.535-.411-.882-.571ZM7.5 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1Z"/>
-                    </svg>save 3$ with app <ChevronDownIcon/>
-             </div>
+     
+             <Qrcode/>
             
-            <div class>
+            <div >
                 Supper Center
                 
             </div>
@@ -44,36 +50,95 @@ const Navbar = () => {
         </Flex>
      <Spacer />
 
-        <Flex h={"4rem"} display="flex" w='100%' justifyContent={"space-between"} direction="row" bg="red">
-            <div className='logobox'>
-            <img src="https://iili.io/HoY8CYb.md.jpg" alt="HoY8CYb.md.jpg"/>
+        <Flex h={"4rem"} display="flex" flexDirection={["column","column","row","row"]} width={["100%","100%","100%","100%"]} justifyContent={"space-between"} direction="row" >
+            
+            <div className='logobox' >
+                 <img onClick={handleNavigate} src="https://iili.io/HoY8CYb.md.jpg" alt="HoY8CYb.md.jpg"/>
             </div>
-            <div>
-            <div className='inputbox'>
-                <input type="text" />
-            </div>
-            <div>
-                Sign In
-            </div>
-            <div>
-                Favorites
-            </div>
-            <div>
-                cart
-            </div>
-            </div>
+            
+            
+            
+            <Box className='featuresbox' display={["flex","flex","flex","flex"]} flexDirection={["column","column","row","row"]}>
+                   <div className='navinputbox'>
+                   <Searchbar/>
+                   <button><Search2Icon  boxSize={"2em"}/></button>
+
+                   </div>
+                  
+                  
+                   <Sign/>
+                 <Link to="/favirate" > <Button>
+                        <CiHeart size={"2em"} color="black"/>
+                        Favorites
+                    </Button>
+                    </Link>
+                    <Link to="/cart" ><Button><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="48" height="48" viewBox="0 0 24 24" stroke-width="1.5" stroke="#607d8b" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="6" cy="19" r="2" />
+  <circle cx="17" cy="19" r="2" />
+  <path d="M17 17h-11v-14h-2" />
+  <path d="M6 5l14 1l-1 7h-13" />
+</svg>
+                        cart
+                    </Button>
+                    </Link>
+            </Box>
             
         </Flex>
 
     <Spacer />
 
-        <Box  w='100%' bg="green">
-        <Heading size='md'>Chakra App</Heading>
-        </Box>
+        <Flex   className='categorynav' width={["100%","100%","100%"]} bg="#ffda00" justifyContent={"space-between"} alignItems="center">
+         <MenuButtons display={["none",]}/>
+       <h1>SUPER DEALS</h1>
+       <h1>APP ONLY</h1>
+       <h1>NEW ARRIVALS</h1>
+        </Flex>
 
    
    
   </Flex>
+  <Flex width={["90%","90%","90%","90%"]} position="fix" display={["flex","flex","flex","none"]} h={["auto","100px","100px","100px"]} margin={"auto"} alignItems={"right"}  direction={"column"}  gap='2' m="auto">
+        <Flex className='topnav'  h={"2rem"} minWidth="80px" justifyContent={"space-around"} display={["none","flex","flex","none"]} flexDirection="row" alignItems={"center"}  w='100%' bg="white" >
+            
+     
+             <Qrcode/>
+            
+            <Button fontSize={["sm","sm","md","md"]} >
+                Supper Center
+                
+            </Button>
+           
+            <Button>
+                ship to <div className='flag'></div> USD
+            </Button>
+            
+            <Button>
+                Language<ChevronDownIcon/>
+            </Button>
+            
+            <Button>
+                Country Website<ChevronDownIcon/>
+            </Button>
+             
+        
+        </Flex>
+     <Spacer />
+    
+
+    <Spacer />
+
+        <Flex   className='categorynav' width={["100%","100%","100%"]} bg="#ffda00" justifyContent={"space-between"} alignItems="center">
+         <MenuButtons />
+       <Heading fontSize={["md","md","lg","lg"]}>SUPER DEALS</Heading>
+       <Heading fontSize={["md","md","lg","lg"]}>APP ONLY</Heading>
+       <Heading fontSize={["md","md","lg","lg"]}>NEW ARRIVALS</Heading>
+        </Flex>
+
+   
+   
+  </Flex>
+  </>
     
   )
 }

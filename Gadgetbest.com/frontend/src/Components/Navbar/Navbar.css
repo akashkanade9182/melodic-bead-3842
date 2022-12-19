@@ -1,80 +1,80 @@
 .topnav>div{
-width: fit-content;
-display: flex;
-flex-direction: row;;
-
-}
-
-
-
-
-
-
-/********************************************tonav*******************************/
-  .logobox{
-  border:1px solid black;
-  width: 15rem;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;;
+  
   }
-  .logobox>img{
-    width: 100%;
-    height: 100%;
-  }
-
-
-  /***************************featuebox**************************************/
-  .featuresbox{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    width: 75%;
-    /* border:1px solid black; */
-    background-color: whate;
-  }
-  .navinputbox{
-    width: 50%;
-    background-color: #ffda00;
-    height:fit-content;
-    padding:2px 2px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-
-  }
- 
-  .navinputbox>input{
-    width: 90%;
-    border:1px solid #ffda00;
-    border-radius: 15px;
-
-  }
-  .navinputbox>button{
-    border: none;
-    
-    background-color: transparent;
-  }
-
-  /************************************categorynav***********************************/
-
-  .categorynav>button{
- background-color:black;
- color: white;
- border: none;
- font-size:1.5rem ;
- font-weight: bold;
-
-  }
-  .categorynav>h1{
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  .categorynav>h1:hover{
-    text-decoration: underline;
-
-  }
-  .logo{
-    width: 100%;
-    height: 100%;
-  }
+  
+  
+  
+  
+  
+  
+  /********************************************tonav*******************************/
+    .logobox{
+    border:1px solid black;
+    width: 15rem;
+    }
+    .logobox>img{
+      width: 100%;
+      height: 100%;
+    }
+  
+  
+    /***************************featuebox**************************************/
+    .featuresbox{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+      width: 75%;
+      /* border:1px solid black; */
+      background-color: whate;
+    }
+    .navinputbox{
+      width: 50%;
+      background-color: #ffda00;
+      height:fit-content;
+      padding:2px 2px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+  
+    }
+   
+    .navinputbox>input{
+      width: 90%;
+      border:1px solid #ffda00;
+      border-radius: 15px;
+  
+    }
+    .navinputbox>button{
+      border: none;
+      
+      background-color: transparent;
+    }
+  
+    /************************************categorynav***********************************/
+  
+    .categorynav>button{
+   background-color:black;
+   color: white;
+   border: none;
+   font-size:1.5rem ;
+   font-weight: bold;
+  
+    }
+    .categorynav>h1{
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .categorynav>h1:hover{
+      text-decoration: underline;
+  
+    }
+    .logo{
+      width: 100%;
+      height: 100%;
+    }

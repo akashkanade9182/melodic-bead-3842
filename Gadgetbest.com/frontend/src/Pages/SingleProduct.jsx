@@ -1,34 +1,109 @@
 import {
   Box,
+  Button,
   Center,
   Flex,
   Image,
-  Img,
+  SimpleGrid,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
   Text,
-  Tfoot,
-  Th,
-  Thead,
   Tr,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/productpage.css";
-import ImageLensZoom from "react-lens-zoom";
+import { useParams } from "react-router-dom";
 
 const SingleProduct = () => {
-  const imgZoom = () => <ImageLensZoom />;
+  const { id } = useParams();
+  // console.log(id);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [count, setCount]=useState(1)
+
+  const getData = () => {
+    setLoading(true);
+    // fetch("https://netmeddata.onrender.com/products")
+    fetch(`https://odd-dog-pea-coat.cyclic.app/products/${id}`)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+        setData(res);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(true);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+
+  console.log(data)
+
+
+const handleQuantity=(id)=>
+{
+  const payload={
+    quantity:count
+    
+  }
+  console.log(payload)
+
+  fetch(`https://odd-dog-pea-coat.cyclic.app/products/edit/${id}`,{
+    method:'PATCH',
+    body:JSON.stringify(payload),
+    headers:{'Content-Type': 'application/json'}
+  })
+  .then(res=>res.json())
+  .then(res=>console.log(res))
+  .catch(err=>console.log(err))
+
+}
+
+
+
+
+  if (loading) {
+    return (
+      <Box>
+        <Center>
+        <Image h='100vh' w='100wh' src="https://c4.wallpaperflare.com/wallpaper/284/923/646/minimalism-black-loading-typography-wallpaper-preview.jpg" alt='loading image'/>
+        </Center>
+      </Box>
+    );
+  }
+  if (error) {
+    return (
+      <Box>
+        <Center>
+        <Image h='100vh' w='100wh' src="https://img.freepik.com/free-vector/glitch-error-404-page-background_23-2148090410.jpg?w=2000" alt='error image'/>
+        </Center>
+      </Box>
+    );
+  }
+
+
+
+
   return (
     <Box>
       {/* Top head line */}
-      <Box p={3} fontSize={["xs", "sm", "sm"]} h="auto" bgColor="gray.50">
-        <Flex w="80%" margin="auto" justifyContent="space-between">
+      <Box p={3} fontSize={["xs", "xs", "xs"]} h="auto" bgColor="gray.50">
+        <Flex
+          w="80%"
+          margin="auto"
+          justifyContent="space-between"
+          flexWrap="wrap"
+        >
           <Box>
-            <Text color="gray">
-              Home > Consumer Electronics > Smart Electronics > Smart Watches
+            <Text color="gray" textAlign="left" alignItems='center'>
+              Home <i class='bx bx-chevron-right'></i> Consumer Electronics <i class='bx bx-chevron-right'></i> Smart Electronics <i class='bx bx-chevron-right'></i> {data.subCategory} <i class='bx bx-chevron-right'></i> {data.brand}
             </Text>
           </Box>
           <Box mr={3}>
@@ -56,77 +131,77 @@ const SingleProduct = () => {
 
       {/* Image and Description */}
       <Box m="auto" w="80%">
-        <Flex>
+        <SimpleGrid columns={[1, 1, 2]}>
           {/* Image  */}
-          <Box w="40%">
-            <Flex justifyContent="center" mt={7}>
+          <Box w={["100%", "100%", "100%", "100%"]}>
+            <Flex flexWrap="wrap" justifyContent="center" mt={7}>
               <Image
-                onMouseMove={imgZoom}
                 h="100%"
                 w="90%"
-                src="https://cdn.pixabay.com/photo/2017/02/12/22/21/pocket-watch-2061228__340.jpg"
+                src={data.image_url}
               />
             </Flex>
           </Box>
 
           {/* Description */}
-          <Box w="60%">
+          <Box w={["100%"]}>
             {/* Watch Title */}
             <Box w="90%" m="auto">
               <Box w="90%" mt={6}>
                 <Text textAlign="left" fontSize="lg" fontWeight="bold">
-                  KD99 Sports Smart Watch Ultra Series 8 NFC Smartwatch
-                  Bluetooth Call Wireless Charging HD Screen - Gold China
+                 {data.title}
                 </Text>
               </Box>
               <br />
 
               <Box>
                 <Text color="gray" textAlign="left">
-                  KD99 Sports Smart Watch Ultra Series 8
+                 Brand: {data.brand}
                 </Text>
               </Box>
               <br />
               <Box bg="gray.50">
                 <Text color="gray" p="20px 10px" textAlign="left">
-                  Price : 10000
+                  Price : {data.price} 
                 </Text>
               </Box>
 
               <Box mt="5">
-                <Flex w="50%" justifyContent="space-between">
-                  <Box p="10px 0px">Color :</Box>
+                <Flex w={["100%"]}>
+                  <Box w="fit-content">Color :</Box>
                   <Box
                     className="section-price-filter"
                     borderColor="gray.400"
-                    p="8px 30px"
+                    // p="5px 20px"
+                    ml={2}
                   >
                     <Center>
-                      <Text cursor="pointer">Gold</Text>
+                      <Text p={1} cursor="pointer">Gold</Text>
                     </Center>
                   </Box>
                   <Box
                     className="section-price-filter"
                     borderColor="gray.400"
-                    p="8px 30px"
+                    // p="5px 20px"
+                    ml={2}
                   >
                     <Center>
-                      <Text>Black</Text>
+                      <Text p={1}>Black</Text>
                     </Center>
                   </Box>
                 </Flex>
               </Box>
-              <Box mt="5">
-                <Flex>
-                  <Box p="10px 0px">Ships From :</Box>
+              <Box mt="5" fontSize={["sm", "sm", "lg"]}>
+                <Flex alignItems='center'>
+                  <Box  w='fit-content'>Quantity :</Box>
                   <Box
                     ml="2rem"
-                    border="2px"
-                    borderColor="red.400"
-                    p="8px 30px"
+                    // p="5px 20px"
                   >
                     <Center>
-                      <Text>China</Text>
+                      <Button bgColor='gray.300' mr='1' size='sm'  onClick={()=>setCount(count-1)} disabled={count===1}>-</Button>
+                      <Button bgColor='gray.300' mr='1' size='sm' disabled>{count}</Button>
+                      <Button bgColor='gray.300'  size='sm' onClick={()=>setCount(count+1)} disabled={count===5}>+</Button>
                     </Center>
                   </Box>
                 </Flex>
@@ -135,25 +210,29 @@ const SingleProduct = () => {
               <br />
 
               <Box>
-                <Flex alignItems="center">
-                  <Box fontSize="2xl" cursor="pointer">
-                    <i class="bx bx-heart"></i>
-                  </Box>
-                  <Box ml="5px">Add to favourite</Box>
-                </Flex>
+                <Button mr={2}>
+                  <Flex alignItems="center">
+                    <Box fontSize={['lg','lg','lg']} cursor="pointer">
+                      <i class="bx bx-heart"></i>
+                    </Box>
+                    <Box ml="5px">favourite</Box>
+                  </Flex>
+                </Button>
+                <Button onClick={()=>handleQuantity(data._id)}>
+                  <Flex alignItems="center">
+                    <Box fontSize={['lg','lg','lg']} cursor="pointer">
+                    <i class='bx bx-cart-alt'></i>
+                    </Box>
+                    <Box ml="5px">Add to Cart</Box>
+                  </Flex>
+                </Button>
               </Box>
 
               <br />
 
-              <Box h="50px" fontSize={["sm", "sm", "sm"]}>
-                <Flex alignItems="center" justifyContent="space-around">
-                  <Box>
-                    <Image
-                      h="100%"
-                      w="40px"
-                      src="https://css.gbtcdn.com/imagecache/gbw/img/site/paypal@.png"
-                    />
-                  </Box>
+              <Box h="max-content" fontSize={["sm", "sm", "sm"]}>
+                <SimpleGrid columns={[1, 1, 3, 6]}>
+                 
                   <Box>
                     <Image
                       h="100%"
@@ -200,13 +279,13 @@ const SingleProduct = () => {
                       <Box>Report Item</Box>
                     </Flex>
                   </Box>
-                </Flex>
+                </SimpleGrid>
               </Box>
 
               <Box></Box>
             </Box>
           </Box>
-        </Flex>
+        </SimpleGrid>
       </Box>
 
       {/* Description */}
@@ -235,7 +314,7 @@ const SingleProduct = () => {
           <br />
 
           <Box>
-            <Text>Title of Watch</Text>
+            <Text>{data.brand}</Text>
           </Box>
 
           <br />
@@ -446,9 +525,9 @@ const SingleProduct = () => {
           <hr />
           <br />
           <Box>
-            <Flex  justifyContent='space-between'>
-              <Box fontSize='4xl' color='gray.200' fontWeight='bold'>
-                <Text textAlign='left'>0</Text>
+            <Flex justifyContent="space-between">
+              <Box fontSize="4xl" color="gray.200" fontWeight="bold">
+                <Text textAlign="left">0</Text>
                 <Flex>
                   <i class="bx bxs-star"></i>
                   <i class="bx bxs-star"></i>
@@ -457,9 +536,18 @@ const SingleProduct = () => {
                   <i class="bx bxs-star"></i>
                 </Flex>
               </Box>
-              <Box  border='1px solid black'>
+              <Box>
                 <Center>
-                  <Text>Write a Review</Text>
+                  <Text
+                    border="1px solid black"
+                    cursor="pointer"
+                    bgColor="yellow.400"
+                    fontWeight="bold"
+                    borderRadius="5px"
+                    p={3}
+                  >
+                    Write a Review
+                  </Text>
                 </Center>
               </Box>
             </Flex>
@@ -468,6 +556,8 @@ const SingleProduct = () => {
           <br />
           <br />
           <hr />
+          <br />
+          <br />
         </Box>
       </Box>
     </Box>

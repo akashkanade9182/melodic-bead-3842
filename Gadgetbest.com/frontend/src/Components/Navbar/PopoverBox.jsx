@@ -41,31 +41,31 @@ const PopoverBox = ({title,title1,title2,title3,title4,title5,title6,arr1,arr2,a
                 <div>
                     <h1>{title2}</h1>
                     {
-                       arr1.map((ele)=><div onClick={onClose}><Link to="/productpage" >{ele}</Link></div>)
+                       arr1.map((ele)=><div onClick={onClose}><Link to="/watches" >{ele}</Link></div>)
                     }
                 </div>
                 <div>
                     <h1>{title}</h1>
                     {
-                       arr1.map((ele)=><div onClick={onClose}><Link to="/productpage" >{ele}</Link></div>)
+                       arr1.map((ele)=><div onClick={onClose}><Link to="/watches" >{ele}</Link></div>)
                     }
                 </div>
                 <div>
                     <h1>{title1}</h1>
                     {
-                       arr1.map((ele)=><div onClick={onClose}><Link to="/productpage" >{ele}</Link></div>)
+                       arr1.map((ele)=><div onClick={onClose}><Link to="/watches" >{ele}</Link></div>)
                     }
                 </div>
                 <div>
                     <h1>{title1}</h1>
                     {
-                       arr1.map((ele)=><div onClick={onClose}><Link to="/productpage" >{ele}</Link></div>)
+                       arr1.map((ele)=><div onClick={onClose}><Link to="/watches" >{ele}</Link></div>)
                     }
                 </div>
                 <div>
                     <h1>{title1}</h1>
                     {
-                       arr1.map((ele)=><div onClick={onClose}><Link to="/productpage" >{ele}</Link></div>)
+                       arr1.map((ele)=><div onClick={onClose}><Link to="/watches" >{ele}</Link></div>)
                     }
                 </div>
                
