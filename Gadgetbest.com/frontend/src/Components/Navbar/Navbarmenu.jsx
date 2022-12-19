@@ -10,7 +10,7 @@ return(
 				  <li> Shop 
 					  <ul>
 						  <li> Online  </li>
-						  <li>}> Offline </li>
+						  <li> Offline </li>
 					  </ul>
 				  </li>
 				 

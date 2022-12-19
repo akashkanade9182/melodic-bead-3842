@@ -4,11 +4,7 @@ import {
     Menu,
     MenuButton,
     MenuList,
-    MenuItem,
-    MenuItemOption,
-    MenuGroup,
-    MenuOptionGroup,
-    MenuDivider,
+ 
     IconButton
   } from '@chakra-ui/react'
   import {HamburgerIcon,EditIcon,AddIcon,ExternalLinkIcon,RepeatIcon} from '@chakra-ui/icons'
@@ -28,7 +24,7 @@ const MenuButtons = () => {
     bg="black"
     width={[ "100px","100px","150px","250px"]}
 
-  >CATEGORY</MenuButton>
+  />
   <MenuList bg={"white"} textAlign="left" p={"5px 5px"} w={["80px","80px","200px","250px"]} display="flex" flexDirection={"column"}>
     {
         Categories.map((ele)=><PopoverBox {...ele}/>)
@@ -39,4 +35,4 @@ const MenuButtons = () => {
   )
 }
 
-export default MenuButtons
+export default MenuButtons;
