@@ -16,6 +16,7 @@ import PaymentPage from './Pages/PaymentPage';
 function App() {
   return (
     <div className="App">
+      <Navbar/>
 
       {/* <SingleProduct/>
      <AllRoutes /> */}

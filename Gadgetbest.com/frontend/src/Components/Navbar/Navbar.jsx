@@ -53,7 +53,7 @@ const Navbar = () => {
         <Flex h={"4rem"} display="flex" flexDirection={["column","column","row","row"]} width={["100%","100%","100%","100%"]} justifyContent={"space-between"} direction="row" >
             
             <div className='logobox' >
-                 <img onClick={handleNavigate} src="https://iili.io/HoY8CYb.md.jpg" alt="HoY8CYb.md.jpg"/>
+                 <img onClick={handleNavigate} src="https://iili.io/HxEXlrx.md.jpg" alt="HoY8CYb.md.jpg"/>
             </div>
             
             
