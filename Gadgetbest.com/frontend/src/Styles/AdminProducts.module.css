@@ -2,15 +2,20 @@
 .admin_heading{
     color: blue;
     font-size: 40px;
-    margin-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    /* border: 1px solid teal; */
+    width: 320px ;
+    margin: auto;
 }
-.main_div{
-    border: 1px solid teal;
-}
+
 .heading{
     color: blue;
-    font-size: 20px;
-    margin-bottom: 50px;
+    font-size: 24px;
+    margin-bottom: 45px;
+    width: 200px;
+    margin: auto;
+    padding-bottom: 50px;
 }
 .add_product_div{
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
@@ -19,6 +24,7 @@
     padding-top: 30px;
     margin: auto;
     margin-bottom: 50px;
+    padding-left: 50px;
 }
 .add_product_div > input {
     border: 1px solid blue;
@@ -35,10 +41,7 @@
     background-color: blue;
     color: white;
 }
-.table_row_div{
-    border: 1px solid red;
-    /* width: 70%; */
-}
+
 .dashboard{
     border: 1px solid teal;
 }
