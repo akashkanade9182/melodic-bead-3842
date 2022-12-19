@@ -10,7 +10,7 @@ const Footers = () => {
  <SimpleGrid columns={[2,3,3,5]} spacing={10} w={["80%","80%","80%","80%"]}m="auto"  bg="white">
   <Box  height='auto'display={"flex"} flexDirection={"column"}>
                
-                <img src="https://iili.io/HoY8CYb.md.jpg" alt="HoY8CYb.md.jpg" />
+                <img src="https://iili.io/HxEXlrx.md.jpg" alt="HoY8CYb.md.jpg" />
                
                 
                    <h1>AFFORDABLE QUALITY</h1> 

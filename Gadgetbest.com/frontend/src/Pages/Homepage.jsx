@@ -130,7 +130,7 @@ const Homepage = () => {
     </Box>
    
     <Productgrid/>
-    <Footer/>
+   
 
 </div>      
            
