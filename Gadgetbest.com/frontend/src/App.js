@@ -1,4 +1,4 @@
-import Navbar from "./Components/Navbar.jsx"
+import Navbar from "./Components/Navbar/Navbar.jsx"
 
 
 import { AllRoutes } from './Pages/AllRoutes';

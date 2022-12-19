@@ -4,10 +4,11 @@ import { ChevronDownIcon, Search2Icon } from '@chakra-ui/icons'
 import { BiGroup } from "react-icons/bi";
 import { CiHeart } from "react-icons/ci";
 import { Flex, Spacer, Box, Heading, ButtonGroup, Button, SimpleGrid } from '@chakra-ui/react'
-import MenuButtons from './MenuButton';
-import Searchbar from './Searchbar';
-import Qrcode from './Qrcode';
-import Sign from "../Navbar/Sign"
+import MenuButtons from "./MenuButton"
+import Searchbar from "./Searchbar"
+import Sign from '../Sign';
+import Qrcode from "./Qrcode"
+
 import { Link, useNavigate } from "react-router-dom"
 
 
@@ -60,7 +61,7 @@ const Navbar = () => {
 
                     <Box className='featuresbox' display={["flex", "flex", "flex", "flex"]} flexDirection={["column", "column", "row", "row"]}>
                         <div className='navinputbox'>
-                            {/* <Searchbar /> */}
+                            <Searchbar />
                             <button><Search2Icon boxSize={"2em"} /></button>
 
                         </div>
@@ -89,7 +90,7 @@ const Navbar = () => {
                 <Spacer />
 
                 <Flex className='categorynav' width={["100%", "100%", "100%"]} bg="#ffda00" justifyContent={"space-between"} alignItems="center">
-                    {/* <MenuButtons display={["none",]} /> */}
+                    <MenuButtons display={["none",]} />
                     <h1>SUPER DEALS</h1>
                     <h1>APP ONLY</h1>
                     <h1>NEW ARRIVALS</h1>
@@ -129,7 +130,7 @@ const Navbar = () => {
                 <Spacer />
 
                 <Flex className='categorynav' width={["100%", "100%", "100%"]} bg="#ffda00" justifyContent={"space-between"} alignItems="center">
-                    <MenuButtons />
+                    
                     <Heading fontSize={["md", "md", "lg", "lg"]}>SUPER DEALS</Heading>
                     <Heading fontSize={["md", "md", "lg", "lg"]}>APP ONLY</Heading>
                     <Heading fontSize={["md", "md", "lg", "lg"]}>NEW ARRIVALS</Heading>
