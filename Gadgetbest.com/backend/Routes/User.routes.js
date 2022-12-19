@@ -11,7 +11,7 @@ userRoutes.post("/signup", async(req,res) => {
     const {name,email,password,number,usertype} = req.body;
 
     const userEmail = await UserModel.findOne({email});
-    const userNumber = await UserModel.findOne({number})
+    const userNumber = await UserModel.findOne({number});
 
 
     if(userEmail && userNumber){
@@ -62,7 +62,7 @@ userRoutes.post("/login", async(req,res) => {
             bcrypt.compare(password, myPassword, (err,result) => {
                 if(result){
                     const token = jwt.sign({message:"Hey"}, process.env.secret_key, {expiresIn:"1d"})
-                    res.send({token, message:"Logged-In Successfully"});
+                    res.send({token, user, "Message":"Logged-In Successfully"});
                 }
                 else{
                     res.send({"Message":"The Password you Entered is Wrong"})
@@ -80,6 +80,22 @@ userRoutes.post("/login", async(req,res) => {
         console.log("Error while making POST req")
         console.log(err)
         res.send({"Message":"Login failed, Please try again later"});
+    }
+})
+
+
+userRoutes.patch("/orderdetails/:userID", async(req,res) => {
+    
+    try {
+        const userID = req.params.userID;
+        const payload = req.body;
+        await UserModel.findByIdAndUpdate(userID,payload);
+        res.send({"Message": "Edited Successfully", payload})
+    } 
+    
+    catch (error) {
+        console.log(err)
+        res.send({"Message":"Error while editing Data"})
     }
 })
 
