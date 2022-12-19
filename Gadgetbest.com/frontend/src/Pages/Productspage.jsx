@@ -49,7 +49,7 @@ const Productspage = () => {
     // fetch("https://netmeddata.onrender.com/products")
     return axios
       .get(
-        `https://odd-dog-pea-coat.cyclic.app/products?search=Watches&sortby=${sortby}&page=${page}&limit=''`
+        `https://odd-dog-pea-coat.cyclic.app/products?search=Watches&sortby=${sortby}&page=${page}&limit='5'`
       )
       .then((res) => {
         console.log(res);
@@ -108,7 +108,9 @@ const Productspage = () => {
     );
   } else {
     return (
+      
       <Box w="98%" m="auto">
+        <br />
         <Flex justifyContent="space-between" lineHeight="25px">
           <Box
             p={2}

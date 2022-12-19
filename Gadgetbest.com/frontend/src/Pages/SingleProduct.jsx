@@ -11,6 +11,7 @@ import {
   Td,
   Text,
   Tr,
+  Spinner
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import "../Styles/productpage.css";
@@ -73,7 +74,7 @@ const handleQuantity=(id)=>
     return (
       <Box>
         <Center>
-        <Image h='100vh' w='100wh' src="https://c4.wallpaperflare.com/wallpaper/284/923/646/minimalism-black-loading-typography-wallpaper-preview.jpg" alt='loading image'/>
+          <Spinner/>
         </Center>
       </Box>
     );
@@ -93,6 +94,7 @@ const handleQuantity=(id)=>
 
   return (
     <Box>
+      <br />
       {/* Top head line */}
       <Box p={3} fontSize={["xs", "xs", "xs"]} h="auto" bgColor="gray.50">
         <Flex
