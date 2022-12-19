@@ -38,7 +38,7 @@ const Productgrid = () => {
 
 
   return (
-    <Box w={["100%","100%","100%","100%","100%",]} className="pgrid" mt={"30px"}>
+    <Box w={["100%","100%","100%","100%","100%",]} className="pgrid" mt={"30px"} alignContent="center">
         <h1 className="collection-heading">Recommanded Products</h1>
   <SimpleGrid w="90%" columns={[2,3,4,5]} spacing={10} margin="auto">
 {
@@ -54,4 +54,4 @@ const Productgrid = () => {
   )
 }
 
-export default Productgrid
+export default Productgrid;

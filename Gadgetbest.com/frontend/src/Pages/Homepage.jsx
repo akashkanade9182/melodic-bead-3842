@@ -56,20 +56,20 @@ const Homepage = () => {
             <h1>COLLECTIONS</h1>
         </div>
         <SimpleGrid columns={[2,3,5,5]}  minChildWidth='200px' spacing='40px' marginTop="5px">
-  <Box boxShadow= "rgba(0, 0, 0, 0.35) 0px 5px 15px"  height='200PX'>
+  <Box boxShadow= {["none","none","none" ,"rgba(0, 0, 0, 0.35) 0px 5px 15px" ]} height='200PX'>
         <img src="https://gloimg.gbtcdn.com/soa/gb/item/6870745450383863808/16673/goods_thumb_220-v1/b2b8c48ff67a.jpg"  alt="" />
   </Box>
   
-  <Box boxShadow= "rgba(0, 0, 0, 0.35) 0px 5px 15px"  height='200PX'>
+  <Box boxShadow= {["none","none","none" ,"rgba(0, 0, 0, 0.35) 0px 5px 15px" ]} height='200PX'>
   <img src="https://gloimg.gbtcdn.com/soa/gb/item/6862458881155723264/16534/goods_thumb_220-v3/1519af3adbf9.jpg" alt="" />  </Box>
  
-  <Box  boxShadow= "rgba(0, 0, 0, 0.35) 0px 5px 15px"  height='200PX'>
+  <Box boxShadow= {["none","none","none" ,"rgba(0, 0, 0, 0.35) 0px 5px 15px" ]} height='200PX'>
   <img src="https://gloimg.gbtcdn.com/soa/gb/item/6507287161137004544/16384/goods_thumb_220-v1/c29e4f319b14.jpg" alt="" />  </Box>
   
-  <Box  boxShadow= "rgba(0, 0, 0, 0.35) 0px 5px 15px"  height='200PX'>
+  <Box boxShadow= {["none","none","none" ,"rgba(0, 0, 0, 0.35) 0px 5px 15px" ]} height='200PX'>
   <img src="https://gloimg.gbtcdn.com/soa/gb/store/6878025592978206720/16512/goods_thumb_220-v1/8d220616eed4.jpg" alt="" />  </Box>
   
-  <Box  boxShadow= "rgba(0, 0, 0, 0.35) 0px 5px 15px"  height='200PX'>
+  <Box boxShadow= {["none","none","none" ,"rgba(0, 0, 0, 0.35) 0px 5px 15px" ]} height='200PX'>
   <img src="https://gloimg.gbtcdn.com/soa/gb/item/6870745450383863808/16643/goods_thumb_220-v1/d7a90e41e9e6.jpg" alt="" />  </Box>
   
 </SimpleGrid>

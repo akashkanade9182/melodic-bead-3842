@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Popover.css"
-import {Link } from "react-router-dom"
+import {Link,useNavigate } from "react-router-dom"
 import {
     Popover,
     PopoverTrigger,
@@ -10,15 +10,22 @@ import {
     PopoverFooter,
     PopoverArrow,
     PopoverCloseButton,
-    PopoverAnchor,ButtonGroup,Button,useDisclosure,Box
+    PopoverAnchor,ButtonGroup,Button,useDisclosure,Box,MenuItem
   } from '@chakra-ui/react'
 
 const PopoverBox = ({title,title1,title2,title3,title4,title5,title6,arr1,arr2,arr3,arr4,arr5,arr6}) => {
     const { isOpen, onToggle, onClose } = useDisclosure()
+    const navigate=useNavigate()
+
+    const handleClick=()=>{
+      onClose ();
+      navigate("/watches")
+      
+    }
     
     
   return (
-    <>
+       <>
       <Button className='trigarbutton' h="30px" textAlign={"left"}  border={"none"} mr={5} onClick={onToggle} >
         {title}
       </Button>
@@ -35,13 +42,13 @@ const PopoverBox = ({title,title1,title2,title3,title4,title5,title6,arr1,arr2,a
                 <div>
                     <h1>{title1}</h1>
                     {
-                       arr1.map((ele)=><div onClick={onClose}>{ele}</div>)
+                       arr1.map((ele)=><MenuItem onClick={handleClick}>{ele}</MenuItem>)
                     }
                 </div>
                 <div>
                     <h1>{title2}</h1>
                     {
-                       arr1.map((ele)=><div onClick={onClose}><Link to={`/watches/${ele._id}`} >{ele}</Link></div>)
+                       arr1.map((ele)=><MenuItem onClick={onClose}><Link to={`/watches/${ele._id}`} >{ele}</Link></MenuItem>)
                     }
                 </div>
                 <div>

@@ -130,7 +130,7 @@ const Navbar = () => {
                 <Spacer />
 
                 <Flex className='categorynav' width={["100%", "100%", "100%"]} bg="#ffda00" justifyContent={"space-between"} alignItems="center">
-                    
+                    <MenuButtons/>
                     <Heading fontSize={["md", "md", "lg", "lg"]}>SUPER DEALS</Heading>
                     <Heading fontSize={["md", "md", "lg", "lg"]}>APP ONLY</Heading>
                     <Heading fontSize={["md", "md", "lg", "lg"]}>NEW ARRIVALS</Heading>

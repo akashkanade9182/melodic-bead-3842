@@ -3,7 +3,7 @@ import styled from "styled-components"
 import axios from "axios"
 import {Box,Text} from "@chakra-ui/react"
 import "./Searchbar.css"
-import {Link } from "react-router-dom"
+import {Link,Navigate,useNavigate } from "react-router-dom"
 
 
 const getdata=(query)=>{
@@ -16,6 +16,7 @@ const Searchbar = ()=> {
 
     const[active,setActive]=useState(0);
     const scrollRef=useRef();
+    const naviagte=useNavigate();
 
 
     const handleInputTextChange=(e)=>{
@@ -27,6 +28,10 @@ const Searchbar = ()=> {
             console.log(e)
         })
 
+    }
+    const handleClick=(id)=>{
+        setSuggestions([])
+        Navigate(`/watches/${id}`)
     }
 
 
@@ -43,13 +48,13 @@ const Searchbar = ()=> {
     <div  className="SuggestionBox" len={5} active={active} ref={scrollRef} bg="white" >
     {
        suggestions && suggestions.map((item,index)=>(
-            <Boxs className="element" key={index}>
-           <Link to={`/singalProductPage/${item._id}`}>     <Box w="100%" display={"flex"} flexDirection="row" alignItems={"center"}>
+            <Boxs className="element" key={item._id} onClick={()=>handleClick()}>
+         <Box w="100%" display={"flex"} flexDirection="row" alignItems={"center"}>
 
                 <img className="poster" src={item.image_url} alt="" />
               <div className="producttitles">{item.title}</div>
                 </Box>
-                </Link>
+               
 
 
             </Boxs>
