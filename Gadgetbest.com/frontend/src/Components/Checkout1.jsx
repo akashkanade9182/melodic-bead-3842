@@ -4,6 +4,8 @@ import { AiOutlineCreditCard } from "react-icons/ai";
 import paypal from "../Assets/paypal.svg"
 import { Link, useNavigate } from "react-router-dom";
 
+
+
 function Checkout1 () {
 
     const navigate = useNavigate();

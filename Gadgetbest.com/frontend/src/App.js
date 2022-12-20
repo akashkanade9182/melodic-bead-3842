@@ -16,14 +16,6 @@ import PaymentPage from './Pages/PaymentPage';
 function App() {
   return (
     <div className="App">
-
-      {/* <SingleProduct/>
-     <AllRoutes /> */}
-
-     {/* <Cart /> */}
-     <CheckoutPage />
-     <PaymentPage />
-
     </div>
   );
 }

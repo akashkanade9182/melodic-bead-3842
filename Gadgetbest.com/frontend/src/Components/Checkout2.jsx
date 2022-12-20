@@ -1,7 +1,52 @@
 import { Box, Button, Container, Flex, FormControl, Input, Text } from "@chakra-ui/react";
-import React from "react";
+import React,{useEffect, useState} from "react";
 
 function Checkout2 () {
+
+    
+    const [dataArr, setDataArr] = useState([]);
+    let sumArr = [];
+    let sum=0;
+
+
+    const getPost = async() => {
+
+        try {
+    
+            let res = await fetch (`https://odd-dog-pea-coat.cyclic.app/products`);
+            let data = await res.json();
+    
+            setDataArr(data)
+            console.log(data)
+            
+        } 
+        
+        catch (error) {
+          console.log("error",error);  
+        }
+    }
+
+    useEffect(() => {
+        getPost()
+    },[])
+
+
+    dataArr.length>0 && dataArr.filter((elem) => {
+        if(elem.quantity>0){
+            sumArr.push({price:elem.price, quantity:elem.quantity})
+        }
+    })
+    if(sumArr.length>0){
+        console.log(sumArr)
+    }
+
+    sumArr.length>0 && sumArr.map((elem) => {
+        sum+=(elem.price*elem.quantity)
+    })
+
+    if(sum>0){
+        console.log(sum)
+    }
     
     return (
         <Container minW="100%"boxShadow='xl' pt="20px" rounded='md' bg='white' h="290px">
@@ -26,7 +71,7 @@ function Checkout2 () {
 
             <Flex mb="20px" justifyContent={"space-between"}>
                 <Text fontWeight={"500"}>Total:</Text>
-                <Text fontWeight={"18px"}>Rs. 12999</Text>
+                <Text fontWeight={"18px"}>Rs. {sum>0? `${sum}`: 0}</Text>
             </Flex>
         </Container>
     )
