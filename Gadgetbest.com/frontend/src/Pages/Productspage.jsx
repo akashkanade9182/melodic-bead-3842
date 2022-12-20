@@ -27,6 +27,8 @@ import {
 } from "../Redux/AppReducer/action";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import CartAlert from "../Components/CartAlert";
+import Navbar from "../Components/Navbar/Navbar";
+import Footers from "../Components/Footer/Footer";
 
 const Productspage = () => {
   const [page, setPage] = useState(1);
@@ -49,7 +51,7 @@ const Productspage = () => {
     // fetch("https://netmeddata.onrender.com/products")
     return axios
       .get(
-        `https://odd-dog-pea-coat.cyclic.app/products?search=Watches&sortby=${sortby}&page=${page}&limit=''`
+        `https://odd-dog-pea-coat.cyclic.app/products?search=Watches&sortby=${sortby}&page=${page}&limit='5'`
       )
       .then((res) => {
         console.log(res);
@@ -95,7 +97,7 @@ const Productspage = () => {
 
   if (isError) {
     return (
-      <Box>
+      <Box mt="100px">
         <Center>
           <Image
             h="100vh"
@@ -108,7 +110,13 @@ const Productspage = () => {
     );
   } else {
     return (
-      <Box w="98%" m="auto">
+      <>
+      <Navbar/>
+      
+      <Box w="98%" m="auto" mt="150px">
+        <Box h="50px" bg="white" width={"100%"}></Box>
+
+        <br />
         <Flex justifyContent="space-between" lineHeight="25px">
           <Box
             p={2}
@@ -549,6 +557,8 @@ const Productspage = () => {
           </Box>
         </Flex>
       </Box>
+      <Footers/>
+      </>
     );
   }
 };

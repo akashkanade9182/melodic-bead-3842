@@ -6,6 +6,7 @@ import { SimpleGrid,Box,Image } from '@chakra-ui/react'
 import Productgrid from '../Components/Homepage/Productgrid'
 import axios from 'axios'
 import ProductCard from '../Components/Homepage/Productcard'
+import Navbar from '../Components/Navbar/Navbar'
 
 
 const getMobile=()=>{
@@ -40,7 +41,10 @@ const Homepage = () => {
 
 
   return (
-    <div style={{marginTop:"50px"}}>
+    <><Navbar/>
+ 
+    <div className="homepage" >
+ 
     
         <Slide/>
      
@@ -132,7 +136,9 @@ const Homepage = () => {
     <Productgrid/>
    
 
-</div>      
+</div> 
+<Footer/> 
+</>    
            
    
   )

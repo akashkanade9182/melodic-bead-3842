@@ -11,10 +11,18 @@ import {
   Td,
   Text,
   Tr,
+  Spinner
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import "../Styles/productpage.css";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
+import axios from "axios";
+import Footers from "../Components/Footer/Footer";
+import Navbar from "../Components/Navbar/Navbar";
+
+const getData=(id)=>{
+ return axios.get(`https://odd-dog-pea-coat.cyclic.app/products/${id}`)
+}
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -22,26 +30,31 @@ const SingleProduct = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [count, setCount]=useState(1)
+  const [count, setCount]=useState(1);
+  const navigate=useNavigate()
 
-  const getData = () => {
-    setLoading(true);
-    // fetch("https://netmeddata.onrender.com/products")
-    fetch(`https://odd-dog-pea-coat.cyclic.app/products/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res)
-        setData(res);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(true);
-      });
-  };
+  // const getData = () => {
+  //   setLoading(true);
+  //   // fetch("https://netmeddata.onrender.com/products")
+  //   fetch(`https://odd-dog-pea-coat.cyclic.app/products/${id}`,{mode:'cors'})
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res)
+  //       setData(res);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setError(true);
+  //     });
+  // };
 
   useEffect(() => {
-    getData();
-  }, []);
+    getData(id).then((r)=>{
+      setData(r.data)
+    }).catch((e)=>{
+      console.log(e);
+    })
+  }, [id]);
 
 
   console.log(data)
@@ -61,7 +74,10 @@ const handleQuantity=(id)=>
     headers:{'Content-Type': 'application/json'}
   })
   .then(res=>res.json())
-  .then(res=>console.log(res))
+  .then(res=>{
+    console.log(res)
+    navigate("/cart")
+  })
   .catch(err=>console.log(err))
 
 }
@@ -71,20 +87,28 @@ const handleQuantity=(id)=>
 
   if (loading) {
     return (
-      <Box>
+      <>
+      <Navbar/>
+      <Box mt="40px">
         <Center>
-        <Image h='100vh' w='100wh' src="https://c4.wallpaperflare.com/wallpaper/284/923/646/minimalism-black-loading-typography-wallpaper-preview.jpg" alt='loading image'/>
+          <Spinner/>
         </Center>
       </Box>
+      <Footers/>
+      </>
     );
   }
   if (error) {
     return (
+      <>
+      <Navbar/>
       <Box>
         <Center>
         <Image h='100vh' w='100wh' src="https://img.freepik.com/free-vector/glitch-error-404-page-background_23-2148090410.jpg?w=2000" alt='error image'/>
         </Center>
       </Box>
+      <Footers/>
+      </>
     );
   }
 
@@ -92,7 +116,10 @@ const handleQuantity=(id)=>
 
 
   return (
-    <Box>
+    <>
+    <Navbar/>
+    <Box mt={"180px"} b="1px solid red">
+      <br />
       {/* Top head line */}
       <Box p={3} fontSize={["xs", "xs", "xs"]} h="auto" bgColor="gray.50">
         <Flex
@@ -223,7 +250,7 @@ const handleQuantity=(id)=>
                     <Box fontSize={['lg','lg','lg']} cursor="pointer">
                     <i class='bx bx-cart-alt'></i>
                     </Box>
-                    <Box ml="5px">Add to Cart</Box>
+                    <Box ml="5px" >Add to Cart</Box>
                   </Flex>
                 </Button>
               </Box>
@@ -561,6 +588,8 @@ const handleQuantity=(id)=>
         </Box>
       </Box>
     </Box>
+    <Footers/>
+    </>
   );
 };
 

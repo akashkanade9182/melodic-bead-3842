@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
+import "./login.css"
+
 
 const Container = styled.div`
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -110,7 +112,8 @@ const Login = () => {
     }
     
     return(       
-        <div>
+        <div className="login">
+          
           <Container>
             <Box>
                 <Heading2>SIGN IN</Heading2>

@@ -4,7 +4,7 @@ import { SimpleGrid,Box } from '@chakra-ui/react'
 import ProductCard from './Productcard'
 import "./Productgrid.css"
 
-const getdata=(limit)=>{
+const gettodo=(limit)=>{
     return axios.get(`https://odd-dog-pea-coat.cyclic.app/products?page=1&limit=${limit}`)
 }
 
@@ -12,7 +12,7 @@ const Productgrid = () => {
     const [data,setData]=useState([]);
     const [limit,setLimit]=useState(10);
     const [loading,setLoading]=useState(false);
-    const handleClick=()=>{
+    const getmoreResult=()=>{
             setLoading((prev)=>!prev)
             setTimeout(()=>{
                 setLoading((prev)=>!prev)
@@ -23,7 +23,7 @@ const Productgrid = () => {
 
     useEffect(()=>{
 
-        getdata(limit).then((r)=>{
+      gettodo(limit).then((r)=>{
             console.log(r.data)
             setData(r.data);
 
@@ -46,7 +46,7 @@ const Productgrid = () => {
 }
   </SimpleGrid>
   {
-    loading ? <img className="loadingimage" src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="...Loading" /> :<button className="loadbutton" onClick={handleClick}>View More</button>
+    loading ? <img className="loadingimage" src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="...Loading" /> :<button className="loadbuttons" onClick={getmoreResult}>View More</button>
   }
          
    </Box>

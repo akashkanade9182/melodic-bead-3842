@@ -11,11 +11,10 @@ import Footer from './Components/Footer/Footer';
 function App() {
   return (
     <div>
-      <Navbar/>
-
+      {/* <Navbar/> */}
 
      <AllRoutes />
-     <Footer/>
+   
  
 
    

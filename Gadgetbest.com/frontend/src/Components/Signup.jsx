@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import "./signup.css"
 
 const Container = styled.div`
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -118,13 +119,13 @@ const Signup = () => {
     }
 
     return(
-        <div>
-           <Container>
-           <Box>
+        <div className="signupbox" style={{marginTop:"800px"}}>
+           <Container mt="300px">
+           <Box mt="300px" pt="300px">
            <Link style={{textDecoration: "none", color: "#bababa"}} to='/login'><Heading1>SIGN IN</Heading1></Link> 
             <Heading2>REGISTER</Heading2>
            </Box>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={{marginTop:"800px"}}>
                 <Input type="email"
                     placeholder="Email" 
                     value={email} 

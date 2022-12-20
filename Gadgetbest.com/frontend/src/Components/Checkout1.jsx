@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Box, Button, Center, Container, Flex, FormControl, Heading, Image, Input, Select, Stack, Text } from '@chakra-ui/react'
 import { AiOutlineCreditCard } from "react-icons/ai";
 import paypal from "../Assets/paypal.svg"
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
 
 function Checkout1 () {
 
@@ -43,19 +44,14 @@ function Checkout1 () {
 
             <Stack boxShadow='xl' rounded='md' bg='white' p="30px" alignItems={"start"} pb="40px" mb="40px">
                 <Box><Text fontWeight={"500"} fontSize={"18px"}>Shipping Address</Text></Box>
-                <Flex>
-                    <Container minW="388px">
-                       <FormControl isRequired>
-                       <Input placeholder='First name' />
+                <Container minW="full" pt="8px">
+                <FormControl isRequired>
+                       <Input placeholder='Name' />
                        </FormControl>
-                    </Container>
+                </Container>
 
-                    <Container minW="389px">
-                       <FormControl isRequired>
-                       <Input placeholder='Last name' />
-                       </FormControl>
-                    </Container>
-                </Flex>
+                    
+               
 
                 <Container minW="full" pt="8px">
                 <FormControl isRequired>
@@ -69,11 +65,7 @@ function Checkout1 () {
                        </FormControl>
                 </Container>
 
-                <Container minW="full" pt="8px">
-                <FormControl isRequired>
-                       <Input placeholder='Suburb' />
-                       </FormControl>
-                </Container>
+               
 
                 <Flex pl="16px" w="full" pt="8px">
                 <Select placeholder='Select Country' mr="20px" maxW="235px">

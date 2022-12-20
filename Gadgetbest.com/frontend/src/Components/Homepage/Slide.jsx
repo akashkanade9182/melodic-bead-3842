@@ -3,9 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Slide.css"
-import { Image, Box, Text, Flex, UnorderedList, ListItem, List } from "@chakra-ui/react";
+import { Image, Box } from "@chakra-ui/react";
 
-import { Link } from 'react-router-dom';
 const Slide = () => {
     const settings = {
         dots: true,

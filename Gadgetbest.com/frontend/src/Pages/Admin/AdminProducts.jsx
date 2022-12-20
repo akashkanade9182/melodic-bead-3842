@@ -1,7 +1,8 @@
 import React from "react"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import styles from "../../Styles/AdminProducts.module.css";
+import {Button} from "@chakra-ui/react"
 
 const AddProducts = () => {
     const navigate = useNavigate();
@@ -28,6 +29,8 @@ const AddProducts = () => {
           category,
           subCategory
         }
+
+       
        
         fetch("https://odd-dog-pea-coat.cyclic.app/products/add", {
             method : "POST",
@@ -51,10 +54,12 @@ const AddProducts = () => {
     return(
         <div>
           <div className={styles.main_div}>
+          
           <h1 className={styles.admin_heading}>Admin Dashboard</h1>
-
+           <Link to={"/"}> <Button  m="auto" ml='640px'> Log out</Button></Link>
              
                 <form onSubmit={handleSubmit} className={styles.add_product_div}>
+                
                  <h1 className={styles.heading}>Add Product here</h1>
                   <input type="text" placeholder="Product title" value={title} required onChange={(e) => setTitle(e.target.value)}></input> <br />
                   <input type="text" placeholder="Image URl" value={image_url} required onChange={(e) => setImage_url(e.target.value)}></input> <br />

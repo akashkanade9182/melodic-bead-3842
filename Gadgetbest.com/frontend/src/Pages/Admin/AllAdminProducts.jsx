@@ -58,7 +58,7 @@ const AllAdminProducts = () => {
     return (
         <div>
         {
-            loading && <h1 style={{color: "blue", fontSize:"30px", margin:"30px"}}>ALL THE PRODUCTS</h1>
+            loading && <h1 style={{color: "blue", fontSize:"30px", margin:"auto",width:"300px",fontWeight:"bold"}}>ALL THE PRODUCTS</h1>
         }
         {
             error && "something went wrong...."

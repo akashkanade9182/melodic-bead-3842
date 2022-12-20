@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import {Link} from "react-router-dom"
 
 import {
@@ -13,16 +13,27 @@ import {
   useDisclosure
   } from '@chakra-ui/react'
   import { BiGroup} from "react-icons/bi";
+  import axios from "axios"
 
   import {ChevronDownIcon ,Search2Icon} from '@chakra-ui/icons'
 
+  
+
+
 const Sign = () => {
+  const [name,setName]=useState("Sign in")
+
+
     const { isOpen, onToggle, onClose } = useDisclosure()
+
+
+
+
   return (
     <>
     <Button mr={5} onClick={onToggle} >
     <BiGroup size={"2em"} color="grey"/>
-                        Sign In
+                        {name}
     </Button>
     <Popover
       returnFocusOnClose={false}

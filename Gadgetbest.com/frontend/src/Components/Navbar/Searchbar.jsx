@@ -16,7 +16,7 @@ const Searchbar = ()=> {
 
     const[active,setActive]=useState(0);
     const scrollRef=useRef();
-    const naviagte=useNavigate();
+    const navigate=useNavigate();
 
 
     const handleInputTextChange=(e)=>{
@@ -31,7 +31,7 @@ const Searchbar = ()=> {
     }
     const handleClick=(id)=>{
         setSuggestions([])
-        Navigate(`/watches/${id}`)
+        navigate(`/watches/${id}`)
     }
 
 
@@ -48,7 +48,7 @@ const Searchbar = ()=> {
     <div  className="SuggestionBox" len={5} active={active} ref={scrollRef} bg="white" >
     {
        suggestions && suggestions.map((item,index)=>(
-            <Boxs className="element" key={item._id} onClick={()=>handleClick()}>
+            <Boxs className="element" key={item._id} onClick={()=>handleClick(item._id)}>
          <Box w="100%" display={"flex"} flexDirection="row" alignItems={"center"}>
 
                 <img className="poster" src={item.image_url} alt="" />

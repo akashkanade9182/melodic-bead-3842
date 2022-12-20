@@ -6,8 +6,8 @@ import axios from "axios"
 
 
 const TotalPrice=(cart,setTotalPrice,setTotalMrp)=>{
-  let totalp=0;
-  let totalm=0;
+  let totalp=5245;
+  let totalm=5245;
   cart.forEach((item)=>{
     totalm=totalm+(item.price*item.quantity);
 
@@ -78,43 +78,51 @@ const Cart = () => {
 
 
 const handleRemoveProduct=(id,quantity)=>{
-    const newquantity=quantity+1;
+  if(quantity>0){
+    let newquantity=Number(quantity)-1
     const payload={
-        quantity:newquantity
+      quantity:newquantity
+      
     }
-       
-     update(id,payload)
-     getData().then((r)=>{
-        setData(r.data)
-        TotalPrice(data,setTotalPrice,setTotalMrp);
-    }).catch((e)=>{
-        console.log(e);
+    console.log(payload)
+  
+    fetch(`https://odd-dog-pea-coat.cyclic.app/products/edit/${id}`,{
+      method:'PATCH',
+      body:JSON.stringify(payload),
+      headers:{'Content-Type': 'application/json'}
     })
-  
-   
-  
-    setCount(prev=>prev+1)
+    .then(res=>res.json())
+    .then(res=>{
+      console.log(res)
+      TotalPrice(data,setTotalPrice,setTotalMrp);
+      navigate("/cart")
+    })
+    .catch(err=>console.log(err))
+  }
               
 }
 
 
 const handleAddProduct=(id,quantity)=>{
-    const newquantity=quantity-1;
-    const payload={
-        quantity:newquantity
-    }
-       if(newquantity>0){
-     update(id,payload)
-     getData().then((r)=>{
-        setData(r.data)
-        TotalPrice(data,setTotalPrice,setTotalMrp);
-    }).catch((e)=>{
-        console.log(e);
-    })
-    }
-   
-  
-    setCount(prev=>prev+1)
+  let newquantity=Number(quantity)+1
+  const payload={
+    quantity:newquantity
+    
+  }
+  console.log(payload)
+
+  fetch(`https://odd-dog-pea-coat.cyclic.app/products/edit/${id}`,{
+    method:'PATCH',
+    body:JSON.stringify(payload),
+    headers:{'Content-Type': 'application/json'}
+  })
+  .then(res=>res.json())
+  .then(res=>{
+    console.log(res)
+    TotalPrice(data,setTotalPrice,setTotalMrp);
+    navigate("/cart")
+  })
+  .catch(err=>console.log(err))
               
 }
 
@@ -127,7 +135,7 @@ useEffect(()=>{
     }).catch((e)=>{
         console.log(e);
     })
-},[count,setData])
+},[count,setData,location,setTotalPrice,setTotalMrp])
 
 
 const handleNavigate=()=>{
