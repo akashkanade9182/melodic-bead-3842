@@ -4,8 +4,15 @@ const userSchema = mongoose.Schema({
     name:String,
     email:String,
     password:String,
-    number:Number,
+    number:String,
     usertype:String,
+    apartment:String,
+    address:String,
+    country:String,
+    state:String,
+    pincode:String,
+    phone:String
+
 }, {
     versionKey:false
 })
