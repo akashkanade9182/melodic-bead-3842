@@ -18,12 +18,12 @@ productRoutes.get("/",async (req,res) => {
 
         try {
             if(sortBy == "asc"){
-                const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*1).limit(limitBy).sort({price:1})
+                const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*limitBy).limit(limitBy).sort({price:1})
                 res.send(products)
             }
 
                else if(sortBy == "desc"){
-                const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*1).limit(limitBy).sort({price:-1})
+                const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*limitBy).limit(limitBy).sort({price:-1})
                 res.send(products)
             }
 
@@ -43,7 +43,7 @@ productRoutes.get("/",async (req,res) => {
      if(searched && page && limitBy){
 
         try {
-            const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*1).limit(limitBy)
+            const products = await ProductModel.find({title:{$regex:searched,$options:'i'}}).skip((page-1)*limitBy).limit(limitBy)
             res.send(products)
         } 
         
@@ -56,7 +56,7 @@ productRoutes.get("/",async (req,res) => {
     else if (page && limitBy){
 
         try {
-            const products = await ProductModel.find().skip((page-1)*1).limit(limitBy)
+            const products = await ProductModel.find().skip((page-1)*limitBy).limit(limitBy)
             console.log("pagination Success");
             res.send(products);
         }
